@@ -6,6 +6,7 @@ import 'package:rocket_todo/data/task_repository.dart';
 import 'package:rocket_todo/ui/widgets/empty_builder.dart';
 import 'package:rocket_todo/ui/widgets/error_builder.dart';
 import 'package:rocket_todo/ui/widgets/loader.dart';
+import 'package:rocket_todo/ui/widgets/task_item.dart';
 
 /// here all the tasks are displayed
 class HomePage extends StatefulWidget {
@@ -30,19 +31,26 @@ class _HomePageState extends State<HomePage> {
       body: StreamBuilder<List<Task>>(
         stream: context.read<TaskRepository>().getStream(),
         builder: ((context, snapshot) {
-          return const EmptyBuilder();
           if (snapshot.hasData) {
             final taskList = snapshot.data ?? [];
 
             if (taskList.isEmpty) {
               return const EmptyBuilder();
             } else {
-              return ListView.builder(
+              return ListView.separated(
+                  physics: const ClampingScrollPhysics(),
+                  separatorBuilder: (_, __) => const Divider(),
                   itemCount: taskList.length,
                   itemBuilder: ((context, index) {
                     final task = taskList.elementAt(index);
-                    return ListTile(
-                      title: Text(task.taskTitle),
+                    return TaskItem(
+                      task: task,
+                      onCompleteToggle: (bool? newValue) {
+                        // toggle the complete status
+                      },
+                      onView: () {
+                        // navigate to edit page to
+                      },
                     );
                   }));
             }
