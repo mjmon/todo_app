@@ -6,7 +6,6 @@ import 'package:sembast/sembast.dart';
 
 abstract class IBaseRepository<T> {
   Stream<List<T>> getStream();
-  Future<List<T>> get();
   Future<void> add(T item);
   Future<void> update(T item);
   Future<void> delete(T item);
@@ -40,22 +39,6 @@ class TaskRepository implements IBaseRepository<Task>, ITaskRepository<Task> {
   }
 
   @override
-  Future<List<Task>> get() async {
-    final recordSnapshots = await _taskStore.find(
-      _database,
-    );
-
-    final taskList = [
-      ...recordSnapshots.map((snapshot) {
-        final task = Task.fromJson(snapshot.value).copyWith(id: snapshot.key);
-        return task;
-      })
-    ];
-
-    return taskList;
-  }
-
-  @override
   Future<void> update(Task item) {
     // TODO: implement update
     throw UnimplementedError();
@@ -76,16 +59,16 @@ class TaskRepository implements IBaseRepository<Task>, ITaskRepository<Task> {
   }
 }
 
+// List<RecordSnapshot<dynamic, dynamic>>
+
 final _taskStreamTransformer = StreamTransformer<
-        List<RecordSnapshot<int, Map<String, Object?>>>,
-        List<Task>>.fromHandlers(
-    handleData:
-        (List<RecordSnapshot<int, Map<String, Object?>>> recordSnapshots,
-            EventSink sink) {
+        List<RecordSnapshot<dynamic, dynamic>>, List<Task>>.fromHandlers(
+    handleData: (List<RecordSnapshot<dynamic, dynamic>> recordSnapshots,
+        EventSink sink) {
   final List<Task> tweetList = [];
 
   for (final e in recordSnapshots) {
-    final tweet = Task.fromJson(e.value);
+    final tweet = Task.fromJson(e.value as Map<String, dynamic>);
     tweetList.add(tweet);
   }
   sink.add(tweetList);
