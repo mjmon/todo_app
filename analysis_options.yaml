@@ -1,0 +1,20 @@
+include: package:flutter_lints/flutter.yaml
+
+linter:
+  rules:
+    sort_pub_dependencies: false
+    camel_case_types: true
+    sort_child_properties_last: false
+    avoid_positional_boolean_parameters: false
+
+analyzer:
+  errors:
+    missing_required_param: error
+    missing_return: error
+    must_be_immutable: error
+    directives_ordering: false
+    unused_import: false
+    avoid_print: false
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"

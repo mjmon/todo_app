@@ -1,0 +1,34 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:rocket_todo/data/database_config.dart';
+import 'package:rocket_todo/data/task_repository.dart';
+import 'package:rocket_todo/ui/home_page.dart';
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  // initialize database config
+  final DatabaseConfig databaseConfig = await initDatabase();
+  //Provide instance of the databaseConfig db and store to the TaskRepository
+  runApp(
+    RepositoryProvider(
+      create: (context) => TaskRepository(
+          database: databaseConfig.database,
+          taskStore: databaseConfig.taskStore),
+      child: const MyApp(),
+    ),
+  );
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(primarySwatch: Colors.green),
+      home: const HomePage(),
+    );
+  }
+}
