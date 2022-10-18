@@ -1,10 +1,13 @@
+import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:drop_down_list/drop_down_list.dart';
 import 'package:drop_down_list/model/selected_list_item.dart';
 import 'package:flutter/material.dart';
 import 'package:rocket_todo/core/model/task.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rocket_todo/data/task_repository.dart';
+import 'package:rocket_todo/ui/popups/common_dialogs.dart';
 import 'package:rocket_todo/ui/popups/common_snack.dart';
+import 'package:rocket_todo/ui/utils/utils.dart';
 
 class CreateEditPage extends StatefulWidget {
   const CreateEditPage({Key? key, required this.isNew, required this.task})
@@ -25,24 +28,6 @@ class _CreateEditPageState extends State<CreateEditPage> {
   // use normal(2) as priority
   final priorityController = TextEditingController(text: 'Normal');
 
-  final List<SelectedListItem> _priorityList = [
-    SelectedListItem(
-      name: 'High',
-      value: "3",
-      isSelected: false,
-    ),
-    SelectedListItem(
-      name: "Normal",
-      value: "2",
-      isSelected: false,
-    ),
-    SelectedListItem(
-      name: "Low",
-      value: "1",
-      isSelected: false,
-    ),
-  ];
-
   @override
   void initState() {
     initFields();
@@ -54,7 +39,8 @@ class _CreateEditPageState extends State<CreateEditPage> {
     if (widget.isNew == false) {
       titleController.text = widget.task.title;
       descController.text = widget.task.description;
-      priorityController.text = widget.task.priority.toString();
+      priorityController.text =
+          getPriorityLabelFromValue(widget.task.priority) ?? '';
     }
   }
 
@@ -124,78 +110,11 @@ class _CreateEditPageState extends State<CreateEditPage> {
               ),
               TextFormField(
                   onTap: () {
-                    DropDownState(
-                      DropDown(
-                        isSearchVisible: false,
-                        bottomSheetTitle: const Text(
-                          'Priority',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20.0,
-                          ),
-                        ),
-                        submitButtonChild: const Text(
-                          'Done',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        data: _priorityList,
-                        listBuilder: (index) {
-                          final prioItem = _priorityList.elementAt(index);
-                          if (index == 0) {
-                            //High
-                            return Row(
-                              children: [
-                                Text(prioItem.name),
-                                Container(
-                                  height: 50,
-                                  width: 50,
-                                  decoration: BoxDecoration(
-                                      color: Colors.red,
-                                      shape: BoxShape.circle),
-                                )
-                              ],
-                            );
-                          } else if (index == 1) {
-                            return Row(
-                              children: [
-                                Text(prioItem.name),
-                                Container(
-                                  height: 50,
-                                  width: 50,
-                                  decoration: BoxDecoration(
-                                      color: Colors.orange,
-                                      shape: BoxShape.circle),
-                                )
-                              ],
-                            );
-                            //Normal
-                          } else if (index == 2) {
-                            return Row(
-                              children: [
-                                Text(prioItem.name),
-                                Container(
-                                  height: 50,
-                                  width: 50,
-                                  decoration: BoxDecoration(
-                                      color: Colors.yellow,
-                                      shape: BoxShape.circle),
-                                )
-                              ],
-                            );
-                            //Low
-                          }
-                          return const SizedBox();
-                        },
-                        enableMultipleSelection: false,
-                      ),
-                    ).showModal(context);
+                    // show selection of priority level
+                    showPrioritySelectPopup(context);
                   },
                   controller: priorityController,
                   readOnly: true,
-                  // enabled: false,
                   decoration: const InputDecoration(
                       suffixIcon: Icon(Icons.keyboard_arrow_down),
                       border: OutlineInputBorder(

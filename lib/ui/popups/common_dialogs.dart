@@ -10,3 +10,16 @@ Future<bool> showDeleteConfirmation(BuildContext context) async {
 
   return result == OkCancelResult.ok;
 }
+
+Future<int?> showPrioritySelectPopup(BuildContext context) async {
+  final result = await showConfirmationDialog(
+      context: context,
+      title: 'Select Priority Level',
+      actions: [
+        const AlertDialogAction(key: 3, label: 'High'),
+        const AlertDialogAction(key: 2, label: 'Normal'),
+        const AlertDialogAction(key: 1, label: 'Low')
+      ]);
+
+  return result;
+}
