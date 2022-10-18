@@ -20,7 +20,7 @@ class TaskItem extends StatelessWidget {
       child: Row(
         children: [
           Checkbox(value: task.isComplete, onChanged: onCompleteToggle),
-          Text(task.taskTitle)
+          Text("${task.id} ${task.taskTitle}")
         ],
       ),
     );

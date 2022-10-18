@@ -54,7 +54,9 @@ final _taskStreamTransformer = StreamTransformer<
   final List<Task> taskList = [];
 
   for (final e in recordSnapshots) {
-    final task = Task.fromJson(e.value as Map<String, dynamic>);
+    final task =
+        Task.fromJson(e.value as Map<String, dynamic>).copyWith(id: e.key);
+
     taskList.add(task);
   }
   sink.add(taskList);

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rocket_todo/core/model/task.dart';
@@ -17,8 +16,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<Task> taskList = [];
-
   @override
   void initState() {
     super.initState();
@@ -37,22 +34,7 @@ class _HomePageState extends State<HomePage> {
             if (taskList.isEmpty) {
               return const EmptyBuilder();
             } else {
-              return ListView.separated(
-                  physics: const ClampingScrollPhysics(),
-                  separatorBuilder: (_, __) => const Divider(),
-                  itemCount: taskList.length,
-                  itemBuilder: ((context, index) {
-                    final task = taskList.elementAt(index);
-                    return TaskItem(
-                      task: task,
-                      onCompleteToggle: (bool? newValue) {
-                        // toggle the complete status
-                      },
-                      onView: () {
-                        // navigate to edit page to
-                      },
-                    );
-                  }));
+              return _buildList(taskList);
             }
           } else if (snapshot.hasError) {
             return const ErrorBuilder();
@@ -67,5 +49,25 @@ class _HomePageState extends State<HomePage> {
           },
           label: const Text('Add Task')),
     );
+  }
+
+  Widget _buildList(List<Task> taskList) {
+    return ListView.separated(
+        physics: const ClampingScrollPhysics(),
+        separatorBuilder: (_, __) => const Divider(),
+        itemCount: taskList.length,
+        itemBuilder: ((context, index) {
+          final task = taskList.elementAt(index);
+          return TaskItem(
+            task: task,
+            onCompleteToggle: (bool? newValue) {
+              final updateTask = task.copyWith(isComplete: newValue ?? false);
+              context.read<TaskRepository>().update(updateTask);
+            },
+            onView: () {
+              // navigate to edit page to
+            },
+          );
+        }));
   }
 }
