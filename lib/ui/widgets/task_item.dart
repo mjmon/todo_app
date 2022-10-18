@@ -20,7 +20,15 @@ class TaskItem extends StatelessWidget {
       child: Row(
         children: [
           Checkbox(value: task.isComplete, onChanged: onCompleteToggle),
-          Text("${task.id} ${task.taskTitle}")
+          Text(
+            "${task.id} ${task.taskTitle}",
+            style: task.isComplete
+                ? const TextStyle(
+                    color: Colors.grey,
+                    decoration: TextDecoration.lineThrough,
+                  )
+                : null,
+          )
         ],
       ),
     );
