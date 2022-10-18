@@ -1,9 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:rocket_todo/core/model/task.dart';
 import 'package:sembast/sembast.dart';
 
 abstract class IBaseRepository<T> {
-  // Stream<List<T>> getStream();
+  Stream<List<T>> getStream();
   Future<List<T>> get();
   Future<void> add(T item);
   Future<void> update(T item);
@@ -64,4 +66,27 @@ class TaskRepository implements IBaseRepository<Task>, ITaskRepository<Task> {
     // TODO: implement isComplete
     throw UnimplementedError();
   }
+
+  @override
+  Stream<List<Task>> getStream() {
+    return _taskStore
+        .query()
+        .onSnapshots(_database)
+        .transform(_taskStreamTransformer);
+  }
 }
+
+final _taskStreamTransformer = StreamTransformer<
+        List<RecordSnapshot<int, Map<String, Object?>>>,
+        List<Task>>.fromHandlers(
+    handleData:
+        (List<RecordSnapshot<int, Map<String, Object?>>> recordSnapshots,
+            EventSink sink) {
+  final List<Task> tweetList = [];
+
+  for (final e in recordSnapshots) {
+    final tweet = Task.fromJson(e.value);
+    tweetList.add(tweet);
+  }
+  sink.add(tweetList);
+});

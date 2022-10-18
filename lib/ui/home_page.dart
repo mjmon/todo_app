@@ -15,15 +15,27 @@ class _HomePageState extends State<HomePage> {
   List<Task> taskList = [];
 
   @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      getData();
+    });
+  }
+
+  Future<void> getData() async {
+    final data = await context.read<TaskRepository>().get();
+    setState(() {
+      taskList = data;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("My Tasks")),
       body: RefreshIndicator(
         onRefresh: () async {
-          final data = await context.read<TaskRepository>().get();
-          setState(() {
-            taskList = data;
-          });
+          getData();
         },
         child: ListView.builder(
           itemCount: taskList.length,
