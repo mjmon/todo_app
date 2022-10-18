@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:rocket_todo/core/model/task.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rocket_todo/data/task_repository.dart';
-import 'package:rocket_todo/ui/dialogs/common_snack.dart';
+import 'package:rocket_todo/ui/popups/common_snack.dart';
 
 class CreateEditPage extends StatefulWidget {
   const CreateEditPage({Key? key, required this.isNew, required this.task})

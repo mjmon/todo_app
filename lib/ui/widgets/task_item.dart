@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rocket_todo/core/model/task.dart';
-import 'package:rocket_todo/ui/dialogs/common_dialogs.dart';
+import 'package:rocket_todo/ui/popups/common_dialogs.dart';
 
 class TaskItem extends StatelessWidget {
   const TaskItem({
