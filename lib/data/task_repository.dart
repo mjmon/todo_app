@@ -11,11 +11,7 @@ abstract class IBaseRepository<T> {
   Future<void> delete(T item);
 }
 
-abstract class ITaskRepository<T> {
-  Future<void> isComplete(T item, bool newValue);
-}
-
-class TaskRepository implements IBaseRepository<Task>, ITaskRepository<Task> {
+class TaskRepository implements IBaseRepository<Task> {
   final Database _database;
   final StoreRef _taskStore;
 
@@ -25,31 +21,22 @@ class TaskRepository implements IBaseRepository<Task>, ITaskRepository<Task> {
 
   @override
   Future<void> add(Task item) async {
-    try {
-      await _taskStore.add(_database, item.toJson());
-    } catch (e) {
-      debugPrint("error adding: $e");
-    }
+    await _taskStore.add(_database, item.toJson());
   }
 
   @override
-  Future<void> delete(Task item) {
-    // TODO: implement delete
-    throw UnimplementedError();
+  Future<void> delete(Task item) async {
+    final finder = Finder(filter: Filter.byKey(item.id));
+    await _taskStore.delete(_database, finder: finder);
   }
 
   @override
-  Future<void> update(Task item) {
-    // TODO: implement update
-    throw UnimplementedError();
+  Future<void> update(Task item) async {
+    final finder = Finder(filter: Filter.byKey(item.id));
+    await _taskStore.update(_database, item.toJson(), finder: finder);
   }
 
-  @override
-  Future<void> isComplete(Task item, bool newValue) {
-    // TODO: implement isComplete
-    throw UnimplementedError();
-  }
-
+  /// listen to changes on the database
   @override
   Stream<List<Task>> getStream() {
     return _taskStore
@@ -59,17 +46,16 @@ class TaskRepository implements IBaseRepository<Task>, ITaskRepository<Task> {
   }
 }
 
-// List<RecordSnapshot<dynamic, dynamic>>
-
+/// for transforming raw snapshots to List of Task
 final _taskStreamTransformer = StreamTransformer<
         List<RecordSnapshot<dynamic, dynamic>>, List<Task>>.fromHandlers(
     handleData: (List<RecordSnapshot<dynamic, dynamic>> recordSnapshots,
         EventSink sink) {
-  final List<Task> tweetList = [];
+  final List<Task> taskList = [];
 
   for (final e in recordSnapshots) {
-    final tweet = Task.fromJson(e.value as Map<String, dynamic>);
-    tweetList.add(tweet);
+    final task = Task.fromJson(e.value as Map<String, dynamic>);
+    taskList.add(task);
   }
-  sink.add(tweetList);
+  sink.add(taskList);
 });

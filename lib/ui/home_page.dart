@@ -4,6 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rocket_todo/core/model/task.dart';
 import 'package:rocket_todo/data/task_repository.dart';
 import 'package:rocket_todo/ui/widgets/empty_builder.dart';
+import 'package:rocket_todo/ui/widgets/error_builder.dart';
+import 'package:rocket_todo/ui/widgets/loader.dart';
 
 /// here all the tasks are displayed
 class HomePage extends StatefulWidget {
@@ -28,25 +30,27 @@ class _HomePageState extends State<HomePage> {
       body: StreamBuilder<List<Task>>(
         stream: context.read<TaskRepository>().getStream(),
         builder: ((context, snapshot) {
+          return const EmptyBuilder();
           if (snapshot.hasData) {
             final taskList = snapshot.data ?? [];
 
             if (taskList.isEmpty) {
               return const EmptyBuilder();
+            } else {
+              return ListView.builder(
+                  itemCount: taskList.length,
+                  itemBuilder: ((context, index) {
+                    final task = taskList.elementAt(index);
+                    return ListTile(
+                      title: Text(task.taskTitle),
+                    );
+                  }));
             }
-            return ListView.builder(
-                itemCount: taskList.length,
-                itemBuilder: ((context, index) {
-                  final task = taskList.elementAt(index);
-                  return ListTile(
-                    title: Text(task.taskTitle),
-                  );
-                }));
           } else if (snapshot.hasError) {
-            return Center(
-                child: Text("Has Error: ${snapshot.error.toString()}"));
+            return const ErrorBuilder();
+          } else {
+            return const Loader();
           }
-          return const Center(child: CupertinoActivityIndicator());
         }),
       ),
       floatingActionButton: FloatingActionButton.extended(

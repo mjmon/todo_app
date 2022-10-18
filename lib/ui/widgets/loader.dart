@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 
 class Loader extends StatelessWidget {
@@ -6,6 +5,6 @@ class Loader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return const Center(child: CupertinoActivityIndicator());
   }
 }

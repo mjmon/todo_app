@@ -5,6 +5,6 @@ class ErrorBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Text("Some Error occured, Please try again");
+    return const Center(child: Text("Some error occured, Please try again"));
   }
 }

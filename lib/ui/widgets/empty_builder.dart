@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/cupertino.dart';
 
 class EmptyBuilder extends StatelessWidget {
@@ -7,7 +5,11 @@ class EmptyBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Text(
-        "No tasks at the moment\nTap add task button to create one");
+    return const Center(
+      child: Text(
+        "No tasks at the moment\nTap `Add Task` button to create one",
+        textAlign: TextAlign.center,
+      ),
+    );
   }
 }
