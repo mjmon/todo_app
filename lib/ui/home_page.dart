@@ -1,7 +1,11 @@
+import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rocket_todo/core/model/task.dart';
 import 'package:rocket_todo/data/task_repository.dart';
+import 'package:rocket_todo/ui/create_edit_page.dart';
+import 'package:rocket_todo/ui/dialogs/common_dialogs.dart';
+import 'package:rocket_todo/ui/dialogs/common_snack.dart';
 import 'package:rocket_todo/ui/widgets/empty_builder.dart';
 import 'package:rocket_todo/ui/widgets/error_builder.dart';
 import 'package:rocket_todo/ui/widgets/loader.dart';
@@ -45,7 +49,14 @@ class _HomePageState extends State<HomePage> {
       ),
       floatingActionButton: FloatingActionButton.extended(
           onPressed: () async {
-            context.read<TaskRepository>().add(Task.dummy());
+            //Create new task
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: ((context) => CreateEditPage(
+                          isNew: false,
+                          task: Task.empty(),
+                        ))));
           },
           label: const Text('Add Task')),
     );
@@ -65,7 +76,18 @@ class _HomePageState extends State<HomePage> {
               context.read<TaskRepository>().update(updateTask);
             },
             onView: () {
-              // navigate to edit page to
+              // Edit the task
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: ((context) => CreateEditPage(
+                            isNew: false,
+                            task: task,
+                          ))));
+            },
+            onDelete: () {
+              context.read<TaskRepository>().delete(task);
+              showSnack(context, "Successfully Deleted");
             },
           );
         }));
