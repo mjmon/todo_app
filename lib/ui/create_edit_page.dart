@@ -1,3 +1,5 @@
+import 'package:drop_down_list/drop_down_list.dart';
+import 'package:drop_down_list/model/selected_list_item.dart';
 import 'package:flutter/material.dart';
 import 'package:rocket_todo/core/model/task.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,6 +22,26 @@ class _CreateEditPageState extends State<CreateEditPage> {
 
   final titleController = TextEditingController();
   final descController = TextEditingController();
+  // use normal(2) as priority
+  final priorityController = TextEditingController(text: 'Normal');
+
+  final List<SelectedListItem> _priorityList = [
+    SelectedListItem(
+      name: 'High',
+      value: "3",
+      isSelected: false,
+    ),
+    SelectedListItem(
+      name: "Normal",
+      value: "2",
+      isSelected: false,
+    ),
+    SelectedListItem(
+      name: "Low",
+      value: "1",
+      isSelected: false,
+    ),
+  ];
 
   @override
   void initState() {
@@ -32,6 +54,7 @@ class _CreateEditPageState extends State<CreateEditPage> {
     if (widget.isNew == false) {
       titleController.text = widget.task.title;
       descController.text = widget.task.description;
+      priorityController.text = widget.task.priority.toString();
     }
   }
 
@@ -39,6 +62,7 @@ class _CreateEditPageState extends State<CreateEditPage> {
   void dispose() {
     titleController.dispose();
     descController.dispose();
+    priorityController.dispose();
     super.dispose();
   }
 
@@ -54,10 +78,13 @@ class _CreateEditPageState extends State<CreateEditPage> {
             physics: const ClampingScrollPhysics(),
             padding: const EdgeInsets.all(10),
             children: [
+              const Text("Title"),
+              const SizedBox(
+                height: 3,
+              ),
               TextFormField(
                   controller: titleController,
                   decoration: const InputDecoration(
-                      hintText: 'Title',
                       border: OutlineInputBorder(
                           borderRadius:
                               BorderRadius.all(Radius.circular(10.0)))),
@@ -70,12 +97,15 @@ class _CreateEditPageState extends State<CreateEditPage> {
               const SizedBox(
                 height: 10,
               ),
+              const Text("Description"),
+              const SizedBox(
+                height: 3,
+              ),
               TextFormField(
                 controller: descController,
                 minLines: 3,
                 maxLines: null,
                 decoration: const InputDecoration(
-                    hintText: 'Description',
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(10.0)))),
                 validator: (value) {
@@ -85,6 +115,98 @@ class _CreateEditPageState extends State<CreateEditPage> {
                   return null;
                 },
               ),
+              const SizedBox(
+                height: 10,
+              ),
+              const Text("Priority"),
+              const SizedBox(
+                height: 3,
+              ),
+              TextFormField(
+                  onTap: () {
+                    DropDownState(
+                      DropDown(
+                        isSearchVisible: false,
+                        bottomSheetTitle: const Text(
+                          'Priority',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20.0,
+                          ),
+                        ),
+                        submitButtonChild: const Text(
+                          'Done',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        data: _priorityList,
+                        listBuilder: (index) {
+                          final prioItem = _priorityList.elementAt(index);
+                          if (index == 0) {
+                            //High
+                            return Row(
+                              children: [
+                                Text(prioItem.name),
+                                Container(
+                                  height: 50,
+                                  width: 50,
+                                  decoration: BoxDecoration(
+                                      color: Colors.red,
+                                      shape: BoxShape.circle),
+                                )
+                              ],
+                            );
+                          } else if (index == 1) {
+                            return Row(
+                              children: [
+                                Text(prioItem.name),
+                                Container(
+                                  height: 50,
+                                  width: 50,
+                                  decoration: BoxDecoration(
+                                      color: Colors.orange,
+                                      shape: BoxShape.circle),
+                                )
+                              ],
+                            );
+                            //Normal
+                          } else if (index == 2) {
+                            return Row(
+                              children: [
+                                Text(prioItem.name),
+                                Container(
+                                  height: 50,
+                                  width: 50,
+                                  decoration: BoxDecoration(
+                                      color: Colors.yellow,
+                                      shape: BoxShape.circle),
+                                )
+                              ],
+                            );
+                            //Low
+                          }
+                          return const SizedBox();
+                        },
+                        enableMultipleSelection: false,
+                      ),
+                    ).showModal(context);
+                  },
+                  controller: priorityController,
+                  readOnly: true,
+                  // enabled: false,
+                  decoration: const InputDecoration(
+                      suffixIcon: Icon(Icons.keyboard_arrow_down),
+                      border: OutlineInputBorder(
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(10.0)))),
+                  validator: ((value) {
+                    if (value == null || value.isEmpty) {
+                      return "Required field";
+                    }
+                    return null;
+                  })),
             ],
           )),
       floatingActionButton: FloatingActionButton.extended(
