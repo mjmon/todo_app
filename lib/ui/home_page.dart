@@ -49,14 +49,15 @@ class _HomePageState extends State<HomePage> {
       ),
       floatingActionButton: FloatingActionButton.extended(
           onPressed: () async {
-            //Create new task
+            // Create new task
             Navigator.push(
                 context,
                 MaterialPageRoute(
                     builder: ((context) => CreateEditPage(
-                          isNew: false,
+                          isNew: true,
                           task: Task.empty(),
                         ))));
+            // context.read<TaskRepository>().add(Task.dummy());
           },
           label: const Text('Add Task')),
     );
@@ -72,8 +73,13 @@ class _HomePageState extends State<HomePage> {
           return TaskItem(
             task: task,
             onCompleteToggle: (bool? newValue) {
-              final updateTask = task.copyWith(isComplete: newValue ?? false);
-              context.read<TaskRepository>().update(updateTask);
+              // Toggle the complete status
+              final updatedTask = task.copyWith(isComplete: newValue ?? false);
+              context.read<TaskRepository>().update(updatedTask);
+              final message = newValue == true
+                  ? "${updatedTask.title} is marked as `Completed`"
+                  : "${updatedTask.title} is resumed!";
+              showSnack(context, message);
             },
             onView: () {
               // Edit the task
@@ -86,9 +92,11 @@ class _HomePageState extends State<HomePage> {
                           ))));
             },
             onDelete: () {
+              // delete task
               context.read<TaskRepository>().delete(task);
-              showSnack(context, "Successfully Deleted");
+              showSnack(context, "${task.title} is successfully deleted!");
             },
+            onChangePriority: (newValue) {},
           );
         }));
   }

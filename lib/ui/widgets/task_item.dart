@@ -3,16 +3,18 @@ import 'package:rocket_todo/core/model/task.dart';
 import 'package:rocket_todo/ui/dialogs/common_dialogs.dart';
 
 class TaskItem extends StatelessWidget {
-  const TaskItem(
-      {Key? key,
-      required this.task,
-      required this.onCompleteToggle,
-      required this.onView,
-      required this.onDelete})
-      : super(key: key);
+  const TaskItem({
+    Key? key,
+    required this.task,
+    required this.onCompleteToggle,
+    required this.onChangePriority,
+    required this.onView,
+    required this.onDelete,
+  }) : super(key: key);
 
   final Task task;
-  final void Function(bool?)? onCompleteToggle;
+  final void Function(bool? newValue)? onCompleteToggle;
+  final void Function(int newValue) onChangePriority;
   final void Function() onView;
   final void Function() onDelete;
 
@@ -35,7 +37,7 @@ class TaskItem extends StatelessWidget {
           children: [
             Checkbox(value: task.isComplete, onChanged: onCompleteToggle),
             Text(
-              "${task.id} ${task.taskTitle}",
+              "${task.id} ${task.title}",
               style: task.isComplete
                   ? const TextStyle(
                       color: Colors.grey,

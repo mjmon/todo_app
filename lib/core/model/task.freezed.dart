@@ -21,7 +21,9 @@ Task _$TaskFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Task {
   int? get id => throw _privateConstructorUsedError;
-  String get taskTitle => throw _privateConstructorUsedError;
+  String get title => throw _privateConstructorUsedError;
+  String get description => throw _privateConstructorUsedError;
+  int get priority => throw _privateConstructorUsedError;
   bool get isComplete => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -34,7 +36,12 @@ abstract class $TaskCopyWith<$Res> {
   factory $TaskCopyWith(Task value, $Res Function(Task) then) =
       _$TaskCopyWithImpl<$Res, Task>;
   @useResult
-  $Res call({int? id, String taskTitle, bool isComplete});
+  $Res call(
+      {int? id,
+      String title,
+      String description,
+      int priority,
+      bool isComplete});
 }
 
 /// @nodoc
@@ -51,7 +58,9 @@ class _$TaskCopyWithImpl<$Res, $Val extends Task>
   @override
   $Res call({
     Object? id = freezed,
-    Object? taskTitle = null,
+    Object? title = null,
+    Object? description = null,
+    Object? priority = null,
     Object? isComplete = null,
   }) {
     return _then(_value.copyWith(
@@ -59,10 +68,18 @@ class _$TaskCopyWithImpl<$Res, $Val extends Task>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      taskTitle: null == taskTitle
-          ? _value.taskTitle
-          : taskTitle // ignore: cast_nullable_to_non_nullable
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
               as String,
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+      priority: null == priority
+          ? _value.priority
+          : priority // ignore: cast_nullable_to_non_nullable
+              as int,
       isComplete: null == isComplete
           ? _value.isComplete
           : isComplete // ignore: cast_nullable_to_non_nullable
@@ -77,7 +94,12 @@ abstract class _$$_TaskCopyWith<$Res> implements $TaskCopyWith<$Res> {
       __$$_TaskCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? id, String taskTitle, bool isComplete});
+  $Res call(
+      {int? id,
+      String title,
+      String description,
+      int priority,
+      bool isComplete});
 }
 
 /// @nodoc
@@ -90,7 +112,9 @@ class __$$_TaskCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res, _$_Task>
   @override
   $Res call({
     Object? id = freezed,
-    Object? taskTitle = null,
+    Object? title = null,
+    Object? description = null,
+    Object? priority = null,
     Object? isComplete = null,
   }) {
     return _then(_$_Task(
@@ -98,10 +122,18 @@ class __$$_TaskCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res, _$_Task>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      taskTitle: null == taskTitle
-          ? _value.taskTitle
-          : taskTitle // ignore: cast_nullable_to_non_nullable
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
               as String,
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+      priority: null == priority
+          ? _value.priority
+          : priority // ignore: cast_nullable_to_non_nullable
+              as int,
       isComplete: null == isComplete
           ? _value.isComplete
           : isComplete // ignore: cast_nullable_to_non_nullable
@@ -113,20 +145,29 @@ class __$$_TaskCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res, _$_Task>
 /// @nodoc
 @JsonSerializable()
 class _$_Task implements _Task {
-  const _$_Task({this.id, required this.taskTitle, required this.isComplete});
+  const _$_Task(
+      {this.id,
+      required this.title,
+      required this.description,
+      required this.priority,
+      required this.isComplete});
 
   factory _$_Task.fromJson(Map<String, dynamic> json) => _$$_TaskFromJson(json);
 
   @override
   final int? id;
   @override
-  final String taskTitle;
+  final String title;
+  @override
+  final String description;
+  @override
+  final int priority;
   @override
   final bool isComplete;
 
   @override
   String toString() {
-    return 'Task(id: $id, taskTitle: $taskTitle, isComplete: $isComplete)';
+    return 'Task(id: $id, title: $title, description: $description, priority: $priority, isComplete: $isComplete)';
   }
 
   @override
@@ -135,15 +176,19 @@ class _$_Task implements _Task {
         (other.runtimeType == runtimeType &&
             other is _$_Task &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.taskTitle, taskTitle) ||
-                other.taskTitle == taskTitle) &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.priority, priority) ||
+                other.priority == priority) &&
             (identical(other.isComplete, isComplete) ||
                 other.isComplete == isComplete));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, taskTitle, isComplete);
+  int get hashCode =>
+      Object.hash(runtimeType, id, title, description, priority, isComplete);
 
   @JsonKey(ignore: true)
   @override
@@ -162,7 +207,9 @@ class _$_Task implements _Task {
 abstract class _Task implements Task {
   const factory _Task(
       {final int? id,
-      required final String taskTitle,
+      required final String title,
+      required final String description,
+      required final int priority,
       required final bool isComplete}) = _$_Task;
 
   factory _Task.fromJson(Map<String, dynamic> json) = _$_Task.fromJson;
@@ -170,7 +217,11 @@ abstract class _Task implements Task {
   @override
   int? get id;
   @override
-  String get taskTitle;
+  String get title;
+  @override
+  String get description;
+  @override
+  int get priority;
   @override
   bool get isComplete;
   @override
