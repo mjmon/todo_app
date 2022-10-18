@@ -51,20 +51,33 @@ class _CreateEditPageState extends State<CreateEditPage> {
       body: Form(
           key: _formKey,
           child: ListView(
+            physics: const ClampingScrollPhysics(),
             padding: const EdgeInsets.all(10),
             children: [
               TextFormField(
                   controller: titleController,
-                  decoration: const InputDecoration(hintText: 'Title'),
+                  decoration: const InputDecoration(
+                      hintText: 'Title',
+                      border: OutlineInputBorder(
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(10.0)))),
                   validator: ((value) {
                     if (value == null || value.isEmpty) {
                       return "Required field";
                     }
                     return null;
                   })),
+              const SizedBox(
+                height: 10,
+              ),
               TextFormField(
                 controller: descController,
-                decoration: const InputDecoration(hintText: 'Description'),
+                minLines: 3,
+                maxLines: null,
+                decoration: const InputDecoration(
+                    hintText: 'Description',
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10.0)))),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return "Required field";
