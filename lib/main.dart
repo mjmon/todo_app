@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rocket_todo/data/database_config.dart';
 import 'package:rocket_todo/data/task_repository.dart';
+import 'package:rocket_todo/state/bloc/task_bloc.dart';
 import 'package:rocket_todo/ui/home_page.dart';
 
 Future<void> main() async {
@@ -24,11 +25,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(primarySwatch: Colors.green),
-      home: const HomePage(),
+    return BlocProvider(
+      create: (context) =>
+          TaskBloc(taskRepository: context.read<TaskRepository>()),
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(primarySwatch: Colors.green),
+        home: const HomePage(),
+      ),
     );
   }
 }
