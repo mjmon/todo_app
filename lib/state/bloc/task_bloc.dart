@@ -32,7 +32,14 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
   Future<void> _fetchTaskHandler(Fetch e, Emitter<TaskState> emit) async {
     try {
       emit(state.copyWith(isBusy: true));
-      final kAllTaskList = await _taskRepository.fetch();
+      List<Task> kAllTaskList = await _taskRepository.fetch();
+      //sorting
+      if (state.sortBy == "Name") {
+        kAllTaskList.sort((a, b) => a.title.compareTo(b.title));
+      } else if (state.sortBy == "Priority") {
+        kAllTaskList.sort((a, b) => b.priority.compareTo(a.priority));
+      }
+
       final kActiveTaskList = [
         ...kAllTaskList.where((task) => task.isComplete == false)
       ];
@@ -108,5 +115,26 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
   Future<void> _changeSortbyHandler(
       ChangeSortby e, Emitter<TaskState> emit) async {
     emit(state.copyWith(sortBy: e.sortby));
+
+    List<Task> kAllTaskList = [...state.allTaskList];
+    //sorting
+    if (state.sortBy == "Name") {
+      kAllTaskList.sort((a, b) => a.title.compareTo(b.title));
+    } else if (state.sortBy == "Priority") {
+      kAllTaskList.sort((a, b) => b.priority.compareTo(a.priority));
+    }
+
+    final kActiveTaskList = [
+      ...kAllTaskList.where((task) => task.isComplete == false)
+    ];
+    final kCompletedTaskList = [
+      ...kAllTaskList.where((task) => task.isComplete)
+    ];
+
+    emit(state.copyWith(
+      allTaskList: kAllTaskList,
+      activeTaskList: kActiveTaskList,
+      completedTaskList: kCompletedTaskList,
+    ));
   }
 }

@@ -23,14 +23,25 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("My Tasks"),
-        actions: [IconButton(onPressed: () {
-          
-        }, icon: const Icon(Icons.sort))],
+        actions: [
+          IconButton(
+              onPressed: () async {
+                await showSortSelectPopup(context, currentSort: "Name")
+                    .then((result) {
+                  if (result != null) {
+                    context
+                        .read<TaskBloc>()
+                        .add(TaskEvent.changeSortby(sortby: result));
+                  }
+                });
+              },
+              icon: const Icon(Icons.sort))
+        ],
       ),
       body: BlocConsumer<TaskBloc, TaskState>(
         listenWhen: (previous, current) => previous.isBusy != current.isBusy,
         listener: (context, state) {},
-        buildWhen: (previous, current) => previous.isBusy != current.isBusy,
+        buildWhen: (previous, current) => true,
         builder: (context, state) {
           if (state.isBusy) {
             return const Loader();

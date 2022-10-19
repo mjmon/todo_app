@@ -15,7 +15,7 @@ Future<bool> showDeleteConfirmation(BuildContext context) async {
 
 /// [currentSelected] is the current priority value of the task prior to updating it
 Future<int?> showPrioritySelectPopup(BuildContext context,
-    {int currentSelected = 2}) async {
+    {required int currentSelected}) async {
   const priorityList = [
     {'key': 3, 'label': 'High'},
     {'key': 2, 'label': 'Normal'},
@@ -36,6 +36,27 @@ Future<int?> showPrioritySelectPopup(BuildContext context,
             label: label,
           );
         })
+      ]);
+
+  return result;
+}
+
+Future<String?> showSortSelectPopup(BuildContext context,
+    {required String currentSort}) async {
+  final result = await showConfirmationDialog(
+      context: context,
+      style: AdaptiveStyle.iOS,
+      title: 'Sort By',
+      initialSelectedActionKey: currentSort,
+      actions: [
+        const AlertDialogAction(
+          key: 'Name',
+          label: 'Name',
+        ),
+        const AlertDialogAction(
+          key: 'Priority',
+          label: 'Priority',
+        ),
       ]);
 
   return result;
