@@ -20,30 +20,10 @@ class TaskRepository implements IBaseRepository<Task> {
       : _database = database,
         _taskStore = taskStore;
 
-  @override
-  Future<void> add(Task item) async {
-    await _taskStore.add(_database, item.toJson());
-  }
-
-  @override
-  Future<void> delete(Task item) async {
-    final finder = Finder(filter: Filter.byKey(item.id));
-    await _taskStore.delete(_database, finder: finder);
-  }
-
-  @override
-  Future<void> update(Task item) async {
-    final finder = Finder(filter: Filter.byKey(item.id));
-    await _taskStore.update(_database, item.toJson(), finder: finder);
-  }
-
   /// listen to changes on the database
   @override
-  Stream<List<Task>> stream() {
-    return _taskStore
-        .query()
-        .onSnapshots(_database)
-        .transform(_taskStreamTransformer);
+  Stream<dynamic> stream() {
+    return _taskStore.query().onSnapshots(_database);
   }
 
   @override
@@ -62,20 +42,21 @@ class TaskRepository implements IBaseRepository<Task> {
 
     return taskList;
   }
-}
 
-/// for transforming raw snapshots to List of Task
-final _taskStreamTransformer = StreamTransformer<
-        List<RecordSnapshot<dynamic, dynamic>>, List<Task>>.fromHandlers(
-    handleData: (List<RecordSnapshot<dynamic, dynamic>> recordSnapshots,
-        EventSink sink) {
-  final List<Task> taskList = [];
-
-  for (final e in recordSnapshots) {
-    final task =
-        Task.fromJson(e.value as Map<String, dynamic>).copyWith(id: e.key);
-
-    taskList.add(task);
+  @override
+  Future<void> add(Task item) async {
+    await _taskStore.add(_database, item.toJson());
   }
-  sink.add(taskList);
-});
+
+  @override
+  Future<void> update(Task item) async {
+    final finder = Finder(filter: Filter.byKey(item.id));
+    await _taskStore.update(_database, item.toJson(), finder: finder);
+  }
+
+  @override
+  Future<void> delete(Task item) async {
+    final finder = Finder(filter: Filter.byKey(item.id));
+    await _taskStore.delete(_database, finder: finder);
+  }
+}
