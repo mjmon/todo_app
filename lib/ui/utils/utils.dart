@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-String? getPriorityLabelFromValue(int value) {
+String getPriorityLabelFromValue(int value) {
   if (value == 3) {
     return "High";
   } else if (value == 2) {
@@ -8,7 +8,7 @@ String? getPriorityLabelFromValue(int value) {
   } else if (value == 1) {
     return "Low";
   }
-  return null;
+  return '';
 }
 
 Color? getPriorityColorFromValue(int value) {

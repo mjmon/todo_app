@@ -13,6 +13,7 @@ class CreateEditPage extends StatefulWidget {
   const CreateEditPage({Key? key, required this.isNew, required this.task})
       : super(key: key);
 
+  /// if this is false, means that the user is editing the task
   final bool isNew;
   final Task task;
 
@@ -27,10 +28,13 @@ class _CreateEditPageState extends State<CreateEditPage> {
   final descController = TextEditingController();
   // use normal(2) as priority
   final priorityController = TextEditingController(text: 'Normal');
+  int priorityValue = 2;
 
   @override
   void initState() {
-    initFields();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      initFields();
+    });
     super.initState();
   }
 
@@ -39,8 +43,10 @@ class _CreateEditPageState extends State<CreateEditPage> {
     if (widget.isNew == false) {
       titleController.text = widget.task.title;
       descController.text = widget.task.description;
-      priorityController.text =
-          getPriorityLabelFromValue(widget.task.priority) ?? '';
+      priorityController.text = getPriorityLabelFromValue(widget.task.priority);
+      setState(() {
+        priorityValue = widget.task.priority;
+      });
     }
   }
 
@@ -109,9 +115,16 @@ class _CreateEditPageState extends State<CreateEditPage> {
                 height: 3,
               ),
               TextFormField(
-                  onTap: () {
+                  onTap: () async {
                     // show selection of priority level
-                    showPrioritySelectPopup(context);
+                    final result = await showPrioritySelectPopup(context);
+                    if (result != null) {
+                      setState(() {
+                        priorityController.text =
+                            getPriorityLabelFromValue(result);
+                        priorityValue = result;
+                      });
+                    }
                   },
                   controller: priorityController,
                   readOnly: true,
@@ -138,6 +151,7 @@ class _CreateEditPageState extends State<CreateEditPage> {
                   isComplete: false);
 
               await context.read<TaskRepository>().add(newTask);
+
               if (mounted) {
                 final message = widget.isNew
                     ? "${newTask.title} is successfully added!"

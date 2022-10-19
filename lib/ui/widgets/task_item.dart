@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rocket_todo/core/model/task.dart';
 import 'package:rocket_todo/ui/popups/common_dialogs.dart';
+import 'package:rocket_todo/ui/utils/utils.dart';
 
 class TaskItem extends StatelessWidget {
   const TaskItem({
@@ -36,14 +37,43 @@ class TaskItem extends StatelessWidget {
         child: Row(
           children: [
             Checkbox(value: task.isComplete, onChanged: onCompleteToggle),
-            Text(
-              "${task.id} ${task.title}",
-              style: task.isComplete
-                  ? const TextStyle(
-                      color: Colors.grey,
-                      decoration: TextDecoration.lineThrough,
-                    )
-                  : null,
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "${task.id} ${task.title}",
+                    overflow: TextOverflow.ellipsis,
+                    style: task.isComplete
+                        ? const TextStyle(
+                            color: Colors.grey,
+                            decoration: TextDecoration.lineThrough,
+                          )
+                        : null,
+                  ),
+                  Text(
+                    task.description,
+                    overflow: TextOverflow.ellipsis,
+                    style: task.isComplete
+                        ? Theme.of(context).textTheme.caption!.copyWith(
+                            color: Colors.grey,
+                            decoration: TextDecoration.lineThrough)
+                        : Theme.of(context).textTheme.caption,
+                  ),
+                  Builder(builder: (context) {
+                    final label = getPriorityLabelFromValue(task.priority);
+                    final color = getPriorityColorFromValue(task.priority);
+
+                    return Text(
+                      label,
+                      style: Theme.of(context)
+                          .textTheme
+                          .caption
+                          ?.copyWith(color: color),
+                    );
+                  })
+                ],
+              ),
             )
           ],
         ),

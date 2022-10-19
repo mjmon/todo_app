@@ -12,13 +12,21 @@ Future<bool> showDeleteConfirmation(BuildContext context) async {
 }
 
 Future<int?> showPrioritySelectPopup(BuildContext context) async {
+  const priorityList = [
+    {'key': 3, 'label': 'High'},
+    {'key': 2, 'label': 'Normal'},
+    {'key': 1, 'label': 'Low'}
+  ];
+
   final result = await showConfirmationDialog(
       context: context,
       title: 'Select Priority Level',
       actions: [
-        const AlertDialogAction(key: 3, label: 'High'),
-        const AlertDialogAction(key: 2, label: 'Normal'),
-        const AlertDialogAction(key: 1, label: 'Low')
+        ...priorityList.map((e) {
+          final int key = e['key'] as int;
+          final String label = e['label'] as String;
+          return AlertDialogAction(key: key, label: label);
+        })
       ]);
 
   return result;
