@@ -58,6 +58,41 @@ class _CreateEditPageState extends State<CreateEditPage> {
     super.dispose();
   }
 
+  Future<void> handleAddEdit() async {
+    if (_formKey.currentState!.validate()) {
+      final newTask = widget.isNew
+          ? Task(
+              title: titleController.text.trim(),
+              description: descController.text.trim(),
+              priority: priorityValue,
+              isComplete: false)
+          : widget.task.copyWith(
+              title: titleController.text.trim(),
+              description: descController.text.trim(),
+              priority: priorityValue,
+            );
+
+      if (widget.isNew) {
+        // add new task
+        await context.read<TaskRepository>().add(newTask);
+      } else {
+        //update the task
+        await context.read<TaskRepository>().update(newTask);
+      }
+
+      if (mounted) {
+        final message = widget.isNew
+            ? "${newTask.title} is successfully added!"
+            : "${newTask.title} is successfully updated!";
+
+        showSnack(context, message);
+        await Future.delayed(const Duration(milliseconds: 300), () {
+          Navigator.pop(context);
+        });
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -144,39 +179,8 @@ class _CreateEditPageState extends State<CreateEditPage> {
             ],
           )),
       floatingActionButton: FloatingActionButton.extended(
-          onPressed: () async {
-            if (_formKey.currentState!.validate()) {
-              final newTask = widget.isNew
-                  ? Task(
-                      title: titleController.text.trim(),
-                      description: descController.text.trim(),
-                      priority: priorityValue,
-                      isComplete: false)
-                  : widget.task.copyWith(
-                      title: titleController.text.trim(),
-                      description: descController.text.trim(),
-                      priority: priorityValue,
-                    );
-
-              if (widget.isNew) {
-                // add new task
-                await context.read<TaskRepository>().add(newTask);
-              } else {
-                //update the task
-                await context.read<TaskRepository>().update(newTask);
-              }
-
-              if (mounted) {
-                final message = widget.isNew
-                    ? "${newTask.title} is successfully added!"
-                    : "${newTask.title} is successfully updated!";
-
-                showSnack(context, message);
-                Navigator.pop(context);
-              }
-            }
-          },
-          label: const Text('Save Task')),
+          onPressed: handleAddEdit,
+          label: Text(widget.isNew ? 'Save' : 'Update')),
     );
   }
 }
