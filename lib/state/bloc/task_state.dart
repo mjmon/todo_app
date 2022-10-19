@@ -6,6 +6,7 @@ class TaskState with _$TaskState {
       {required List<Task> taskList,
       required List<Task> activeTaskList,
       required List<Task> completedTaskList,
+      required String displayMode,
       required bool isBusy,
       required String? errorMessage,
       required String? successMessage}) = _TaskState;
@@ -14,6 +15,7 @@ class TaskState with _$TaskState {
       taskList: [],
       activeTaskList: [],
       completedTaskList: [],
+      displayMode: 'All',
       isBusy: false,
       errorMessage: null,
       successMessage: null);

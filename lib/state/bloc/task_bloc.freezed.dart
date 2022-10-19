@@ -22,6 +22,7 @@ mixin _$TaskEvent {
     required TResult Function(Task task) add,
     required TResult Function(Task task) update,
     required TResult Function(Task task) delete,
+    required TResult Function(String mode) changeDisplayMode,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -30,6 +31,7 @@ mixin _$TaskEvent {
     TResult? Function(Task task)? add,
     TResult? Function(Task task)? update,
     TResult? Function(Task task)? delete,
+    TResult? Function(String mode)? changeDisplayMode,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -38,6 +40,7 @@ mixin _$TaskEvent {
     TResult Function(Task task)? add,
     TResult Function(Task task)? update,
     TResult Function(Task task)? delete,
+    TResult Function(String mode)? changeDisplayMode,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -47,6 +50,7 @@ mixin _$TaskEvent {
     required TResult Function(Add value) add,
     required TResult Function(Update value) update,
     required TResult Function(Delete value) delete,
+    required TResult Function(ChangeDisplayMode value) changeDisplayMode,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -55,6 +59,7 @@ mixin _$TaskEvent {
     TResult? Function(Add value)? add,
     TResult? Function(Update value)? update,
     TResult? Function(Delete value)? delete,
+    TResult? Function(ChangeDisplayMode value)? changeDisplayMode,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -63,6 +68,7 @@ mixin _$TaskEvent {
     TResult Function(Add value)? add,
     TResult Function(Update value)? update,
     TResult Function(Delete value)? delete,
+    TResult Function(ChangeDisplayMode value)? changeDisplayMode,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -124,6 +130,7 @@ class _$Fetch implements Fetch {
     required TResult Function(Task task) add,
     required TResult Function(Task task) update,
     required TResult Function(Task task) delete,
+    required TResult Function(String mode) changeDisplayMode,
   }) {
     return fetch();
   }
@@ -135,6 +142,7 @@ class _$Fetch implements Fetch {
     TResult? Function(Task task)? add,
     TResult? Function(Task task)? update,
     TResult? Function(Task task)? delete,
+    TResult? Function(String mode)? changeDisplayMode,
   }) {
     return fetch?.call();
   }
@@ -146,6 +154,7 @@ class _$Fetch implements Fetch {
     TResult Function(Task task)? add,
     TResult Function(Task task)? update,
     TResult Function(Task task)? delete,
+    TResult Function(String mode)? changeDisplayMode,
     required TResult orElse(),
   }) {
     if (fetch != null) {
@@ -161,6 +170,7 @@ class _$Fetch implements Fetch {
     required TResult Function(Add value) add,
     required TResult Function(Update value) update,
     required TResult Function(Delete value) delete,
+    required TResult Function(ChangeDisplayMode value) changeDisplayMode,
   }) {
     return fetch(this);
   }
@@ -172,6 +182,7 @@ class _$Fetch implements Fetch {
     TResult? Function(Add value)? add,
     TResult? Function(Update value)? update,
     TResult? Function(Delete value)? delete,
+    TResult? Function(ChangeDisplayMode value)? changeDisplayMode,
   }) {
     return fetch?.call(this);
   }
@@ -183,6 +194,7 @@ class _$Fetch implements Fetch {
     TResult Function(Add value)? add,
     TResult Function(Update value)? update,
     TResult Function(Delete value)? delete,
+    TResult Function(ChangeDisplayMode value)? changeDisplayMode,
     required TResult orElse(),
   }) {
     if (fetch != null) {
@@ -271,6 +283,7 @@ class _$Add implements Add {
     required TResult Function(Task task) add,
     required TResult Function(Task task) update,
     required TResult Function(Task task) delete,
+    required TResult Function(String mode) changeDisplayMode,
   }) {
     return add(task);
   }
@@ -282,6 +295,7 @@ class _$Add implements Add {
     TResult? Function(Task task)? add,
     TResult? Function(Task task)? update,
     TResult? Function(Task task)? delete,
+    TResult? Function(String mode)? changeDisplayMode,
   }) {
     return add?.call(task);
   }
@@ -293,6 +307,7 @@ class _$Add implements Add {
     TResult Function(Task task)? add,
     TResult Function(Task task)? update,
     TResult Function(Task task)? delete,
+    TResult Function(String mode)? changeDisplayMode,
     required TResult orElse(),
   }) {
     if (add != null) {
@@ -308,6 +323,7 @@ class _$Add implements Add {
     required TResult Function(Add value) add,
     required TResult Function(Update value) update,
     required TResult Function(Delete value) delete,
+    required TResult Function(ChangeDisplayMode value) changeDisplayMode,
   }) {
     return add(this);
   }
@@ -319,6 +335,7 @@ class _$Add implements Add {
     TResult? Function(Add value)? add,
     TResult? Function(Update value)? update,
     TResult? Function(Delete value)? delete,
+    TResult? Function(ChangeDisplayMode value)? changeDisplayMode,
   }) {
     return add?.call(this);
   }
@@ -330,6 +347,7 @@ class _$Add implements Add {
     TResult Function(Add value)? add,
     TResult Function(Update value)? update,
     TResult Function(Delete value)? delete,
+    TResult Function(ChangeDisplayMode value)? changeDisplayMode,
     required TResult orElse(),
   }) {
     if (add != null) {
@@ -423,6 +441,7 @@ class _$Update implements Update {
     required TResult Function(Task task) add,
     required TResult Function(Task task) update,
     required TResult Function(Task task) delete,
+    required TResult Function(String mode) changeDisplayMode,
   }) {
     return update(task);
   }
@@ -434,6 +453,7 @@ class _$Update implements Update {
     TResult? Function(Task task)? add,
     TResult? Function(Task task)? update,
     TResult? Function(Task task)? delete,
+    TResult? Function(String mode)? changeDisplayMode,
   }) {
     return update?.call(task);
   }
@@ -445,6 +465,7 @@ class _$Update implements Update {
     TResult Function(Task task)? add,
     TResult Function(Task task)? update,
     TResult Function(Task task)? delete,
+    TResult Function(String mode)? changeDisplayMode,
     required TResult orElse(),
   }) {
     if (update != null) {
@@ -460,6 +481,7 @@ class _$Update implements Update {
     required TResult Function(Add value) add,
     required TResult Function(Update value) update,
     required TResult Function(Delete value) delete,
+    required TResult Function(ChangeDisplayMode value) changeDisplayMode,
   }) {
     return update(this);
   }
@@ -471,6 +493,7 @@ class _$Update implements Update {
     TResult? Function(Add value)? add,
     TResult? Function(Update value)? update,
     TResult? Function(Delete value)? delete,
+    TResult? Function(ChangeDisplayMode value)? changeDisplayMode,
   }) {
     return update?.call(this);
   }
@@ -482,6 +505,7 @@ class _$Update implements Update {
     TResult Function(Add value)? add,
     TResult Function(Update value)? update,
     TResult Function(Delete value)? delete,
+    TResult Function(ChangeDisplayMode value)? changeDisplayMode,
     required TResult orElse(),
   }) {
     if (update != null) {
@@ -576,6 +600,7 @@ class _$Delete implements Delete {
     required TResult Function(Task task) add,
     required TResult Function(Task task) update,
     required TResult Function(Task task) delete,
+    required TResult Function(String mode) changeDisplayMode,
   }) {
     return delete(task);
   }
@@ -587,6 +612,7 @@ class _$Delete implements Delete {
     TResult? Function(Task task)? add,
     TResult? Function(Task task)? update,
     TResult? Function(Task task)? delete,
+    TResult? Function(String mode)? changeDisplayMode,
   }) {
     return delete?.call(task);
   }
@@ -598,6 +624,7 @@ class _$Delete implements Delete {
     TResult Function(Task task)? add,
     TResult Function(Task task)? update,
     TResult Function(Task task)? delete,
+    TResult Function(String mode)? changeDisplayMode,
     required TResult orElse(),
   }) {
     if (delete != null) {
@@ -613,6 +640,7 @@ class _$Delete implements Delete {
     required TResult Function(Add value) add,
     required TResult Function(Update value) update,
     required TResult Function(Delete value) delete,
+    required TResult Function(ChangeDisplayMode value) changeDisplayMode,
   }) {
     return delete(this);
   }
@@ -624,6 +652,7 @@ class _$Delete implements Delete {
     TResult? Function(Add value)? add,
     TResult? Function(Update value)? update,
     TResult? Function(Delete value)? delete,
+    TResult? Function(ChangeDisplayMode value)? changeDisplayMode,
   }) {
     return delete?.call(this);
   }
@@ -635,6 +664,7 @@ class _$Delete implements Delete {
     TResult Function(Add value)? add,
     TResult Function(Update value)? update,
     TResult Function(Delete value)? delete,
+    TResult Function(ChangeDisplayMode value)? changeDisplayMode,
     required TResult orElse(),
   }) {
     if (delete != null) {
@@ -654,10 +684,163 @@ abstract class Delete implements TaskEvent {
 }
 
 /// @nodoc
+abstract class _$$ChangeDisplayModeCopyWith<$Res> {
+  factory _$$ChangeDisplayModeCopyWith(
+          _$ChangeDisplayMode value, $Res Function(_$ChangeDisplayMode) then) =
+      __$$ChangeDisplayModeCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String mode});
+}
+
+/// @nodoc
+class __$$ChangeDisplayModeCopyWithImpl<$Res>
+    extends _$TaskEventCopyWithImpl<$Res, _$ChangeDisplayMode>
+    implements _$$ChangeDisplayModeCopyWith<$Res> {
+  __$$ChangeDisplayModeCopyWithImpl(
+      _$ChangeDisplayMode _value, $Res Function(_$ChangeDisplayMode) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? mode = null,
+  }) {
+    return _then(_$ChangeDisplayMode(
+      mode: null == mode
+          ? _value.mode
+          : mode // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ChangeDisplayMode implements ChangeDisplayMode {
+  const _$ChangeDisplayMode({required this.mode});
+
+  @override
+  final String mode;
+
+  @override
+  String toString() {
+    return 'TaskEvent.changeDisplayMode(mode: $mode)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ChangeDisplayMode &&
+            (identical(other.mode, mode) || other.mode == mode));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, mode);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ChangeDisplayModeCopyWith<_$ChangeDisplayMode> get copyWith =>
+      __$$ChangeDisplayModeCopyWithImpl<_$ChangeDisplayMode>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() fetch,
+    required TResult Function(Task task) add,
+    required TResult Function(Task task) update,
+    required TResult Function(Task task) delete,
+    required TResult Function(String mode) changeDisplayMode,
+  }) {
+    return changeDisplayMode(mode);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? fetch,
+    TResult? Function(Task task)? add,
+    TResult? Function(Task task)? update,
+    TResult? Function(Task task)? delete,
+    TResult? Function(String mode)? changeDisplayMode,
+  }) {
+    return changeDisplayMode?.call(mode);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? fetch,
+    TResult Function(Task task)? add,
+    TResult Function(Task task)? update,
+    TResult Function(Task task)? delete,
+    TResult Function(String mode)? changeDisplayMode,
+    required TResult orElse(),
+  }) {
+    if (changeDisplayMode != null) {
+      return changeDisplayMode(mode);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Fetch value) fetch,
+    required TResult Function(Add value) add,
+    required TResult Function(Update value) update,
+    required TResult Function(Delete value) delete,
+    required TResult Function(ChangeDisplayMode value) changeDisplayMode,
+  }) {
+    return changeDisplayMode(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(Fetch value)? fetch,
+    TResult? Function(Add value)? add,
+    TResult? Function(Update value)? update,
+    TResult? Function(Delete value)? delete,
+    TResult? Function(ChangeDisplayMode value)? changeDisplayMode,
+  }) {
+    return changeDisplayMode?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Fetch value)? fetch,
+    TResult Function(Add value)? add,
+    TResult Function(Update value)? update,
+    TResult Function(Delete value)? delete,
+    TResult Function(ChangeDisplayMode value)? changeDisplayMode,
+    required TResult orElse(),
+  }) {
+    if (changeDisplayMode != null) {
+      return changeDisplayMode(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ChangeDisplayMode implements TaskEvent {
+  const factory ChangeDisplayMode({required final String mode}) =
+      _$ChangeDisplayMode;
+
+  String get mode;
+  @JsonKey(ignore: true)
+  _$$ChangeDisplayModeCopyWith<_$ChangeDisplayMode> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$TaskState {
   List<Task> get taskList => throw _privateConstructorUsedError;
   List<Task> get activeTaskList => throw _privateConstructorUsedError;
   List<Task> get completedTaskList => throw _privateConstructorUsedError;
+  String get displayMode => throw _privateConstructorUsedError;
   bool get isBusy => throw _privateConstructorUsedError;
   String? get errorMessage => throw _privateConstructorUsedError;
   String? get successMessage => throw _privateConstructorUsedError;
@@ -676,6 +859,7 @@ abstract class $TaskStateCopyWith<$Res> {
       {List<Task> taskList,
       List<Task> activeTaskList,
       List<Task> completedTaskList,
+      String displayMode,
       bool isBusy,
       String? errorMessage,
       String? successMessage});
@@ -697,6 +881,7 @@ class _$TaskStateCopyWithImpl<$Res, $Val extends TaskState>
     Object? taskList = null,
     Object? activeTaskList = null,
     Object? completedTaskList = null,
+    Object? displayMode = null,
     Object? isBusy = null,
     Object? errorMessage = freezed,
     Object? successMessage = freezed,
@@ -714,6 +899,10 @@ class _$TaskStateCopyWithImpl<$Res, $Val extends TaskState>
           ? _value.completedTaskList
           : completedTaskList // ignore: cast_nullable_to_non_nullable
               as List<Task>,
+      displayMode: null == displayMode
+          ? _value.displayMode
+          : displayMode // ignore: cast_nullable_to_non_nullable
+              as String,
       isBusy: null == isBusy
           ? _value.isBusy
           : isBusy // ignore: cast_nullable_to_non_nullable
@@ -741,6 +930,7 @@ abstract class _$$_TaskStateCopyWith<$Res> implements $TaskStateCopyWith<$Res> {
       {List<Task> taskList,
       List<Task> activeTaskList,
       List<Task> completedTaskList,
+      String displayMode,
       bool isBusy,
       String? errorMessage,
       String? successMessage});
@@ -760,6 +950,7 @@ class __$$_TaskStateCopyWithImpl<$Res>
     Object? taskList = null,
     Object? activeTaskList = null,
     Object? completedTaskList = null,
+    Object? displayMode = null,
     Object? isBusy = null,
     Object? errorMessage = freezed,
     Object? successMessage = freezed,
@@ -777,6 +968,10 @@ class __$$_TaskStateCopyWithImpl<$Res>
           ? _value._completedTaskList
           : completedTaskList // ignore: cast_nullable_to_non_nullable
               as List<Task>,
+      displayMode: null == displayMode
+          ? _value.displayMode
+          : displayMode // ignore: cast_nullable_to_non_nullable
+              as String,
       isBusy: null == isBusy
           ? _value.isBusy
           : isBusy // ignore: cast_nullable_to_non_nullable
@@ -800,6 +995,7 @@ class _$_TaskState implements _TaskState {
       {required final List<Task> taskList,
       required final List<Task> activeTaskList,
       required final List<Task> completedTaskList,
+      required this.displayMode,
       required this.isBusy,
       required this.errorMessage,
       required this.successMessage})
@@ -829,6 +1025,8 @@ class _$_TaskState implements _TaskState {
   }
 
   @override
+  final String displayMode;
+  @override
   final bool isBusy;
   @override
   final String? errorMessage;
@@ -837,7 +1035,7 @@ class _$_TaskState implements _TaskState {
 
   @override
   String toString() {
-    return 'TaskState(taskList: $taskList, activeTaskList: $activeTaskList, completedTaskList: $completedTaskList, isBusy: $isBusy, errorMessage: $errorMessage, successMessage: $successMessage)';
+    return 'TaskState(taskList: $taskList, activeTaskList: $activeTaskList, completedTaskList: $completedTaskList, displayMode: $displayMode, isBusy: $isBusy, errorMessage: $errorMessage, successMessage: $successMessage)';
   }
 
   @override
@@ -850,6 +1048,8 @@ class _$_TaskState implements _TaskState {
                 .equals(other._activeTaskList, _activeTaskList) &&
             const DeepCollectionEquality()
                 .equals(other._completedTaskList, _completedTaskList) &&
+            (identical(other.displayMode, displayMode) ||
+                other.displayMode == displayMode) &&
             (identical(other.isBusy, isBusy) || other.isBusy == isBusy) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage) &&
@@ -863,6 +1063,7 @@ class _$_TaskState implements _TaskState {
       const DeepCollectionEquality().hash(_taskList),
       const DeepCollectionEquality().hash(_activeTaskList),
       const DeepCollectionEquality().hash(_completedTaskList),
+      displayMode,
       isBusy,
       errorMessage,
       successMessage);
@@ -879,6 +1080,7 @@ abstract class _TaskState implements TaskState {
       {required final List<Task> taskList,
       required final List<Task> activeTaskList,
       required final List<Task> completedTaskList,
+      required final String displayMode,
       required final bool isBusy,
       required final String? errorMessage,
       required final String? successMessage}) = _$_TaskState;
@@ -889,6 +1091,8 @@ abstract class _TaskState implements TaskState {
   List<Task> get activeTaskList;
   @override
   List<Task> get completedTaskList;
+  @override
+  String get displayMode;
   @override
   bool get isBusy;
   @override

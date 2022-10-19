@@ -19,26 +19,38 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
 
     on<TaskEvent>((event, emit) async {
       await event.map(
-          fetch: (Fetch e) => fetchTaskHandler(e, emit),
-          add: (Add e) => addTaskHandler(e, emit),
-          update: (Update e) => updateTaskHandler(e, emit),
-          delete: (Delete e) {});
+          fetch: (Fetch e) => _fetchTaskHandler(e, emit),
+          add: (Add e) => _addTaskHandler(e, emit),
+          update: (Update e) => _updateTaskHandler(e, emit),
+          delete: (Delete e) => _deleteTaskhandler(e, emit),
+          changeDisplayMode: (ChangeDisplayMode e) {});
     });
   }
 
-  Future<void> fetchTaskHandler(Fetch e, Emitter<TaskState> emit) async {
+  Future<void> _fetchTaskHandler(Fetch e, Emitter<TaskState> emit) async {
     try {
       emit(state.copyWith(isBusy: true));
-      final taskList = await _taskRepository.fetch();
+      final kTaskList = await _taskRepository.fetch();
+      final kActiveTaskList = [
+        ...kTaskList.where((task) => task.isComplete == false)
+      ];
+      final kCompletedTaskList = [
+        ...kTaskList.where((task) => task.isComplete)
+      ];
+
       emit(state.copyWith(
-          taskList: taskList, isBusy: false, errorMessage: null));
+          taskList: kTaskList,
+          activeTaskList: kActiveTaskList,
+          completedTaskList: kCompletedTaskList,
+          isBusy: false,
+          errorMessage: null));
     } catch (e) {
       emit(state.copyWith(
           isBusy: false, errorMessage: "Failed in fetching tasks: $e"));
     }
   }
 
-  Future<void> addTaskHandler(Add e, Emitter<TaskState> emit) async {
+  Future<void> _addTaskHandler(Add e, Emitter<TaskState> emit) async {
     try {
       emit(state.copyWith(isBusy: true));
       await _taskRepository.add(e.task);
@@ -54,7 +66,7 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
     }
   }
 
-  Future<void> updateTaskHandler(Update e, Emitter<TaskState> emit) async {
+  Future<void> _updateTaskHandler(Update e, Emitter<TaskState> emit) async {
     try {
       emit(state.copyWith(isBusy: true));
       await _taskRepository.update(e.task);
@@ -67,6 +79,22 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
           isBusy: false,
           successMessage: null,
           errorMessage: "Failed in updating task: $e"));
+    }
+  }
+
+  Future<void> _deleteTaskhandler(Delete e, Emitter<TaskState> emit) async {
+    try {
+      emit(state.copyWith(isBusy: true));
+      await _taskRepository.delete(e.task);
+      emit(state.copyWith(
+          isBusy: false,
+          successMessage: "Successfully deleted",
+          errorMessage: null));
+    } catch (e) {
+      emit(state.copyWith(
+          isBusy: false,
+          successMessage: null,
+          errorMessage: "Failed in deleting task: $e"));
     }
   }
 }

@@ -13,57 +13,42 @@ import 'package:rocket_todo/ui/widgets/loader.dart';
 import 'package:rocket_todo/ui/widgets/task_item.dart';
 
 /// here all the tasks are displayed
-class HomePage extends StatefulWidget {
+class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
-
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("My Tasks")),
       body: BlocConsumer<TaskBloc, TaskState>(
+        listenWhen: (previous, current) => previous.isBusy != current.isBusy,
         listener: (context, state) {},
         buildWhen: (previous, current) => previous.isBusy != current.isBusy,
         builder: (context, state) {
           if (state.isBusy) {
             return const Loader();
+          } else {
+            if (state.errorMessage != null) {
+              return const ErrorBuilder();
+            }
+            if (state.taskList.isEmpty) {
+              return const EmptyBuilder();
+            }
+            return Column(
+              children: [
+                _buildDisplayMode(),
+
+                // Expanded(child: _buildDisplayMode()),
+                Expanded(child: _buildList(state.taskList)),
+              ],
+            );
           }
-          if (state.taskList.isEmpty) {
-            return const EmptyBuilder();
-          }
-          return _buildList(state.taskList);
         },
       ),
-      // StreamBuilder<List<Task>>(
-      //   stream: context.read<TaskRepository>().stream(),
-      //   builder: ((context, snapshot) {
-      //     if (snapshot.hasData) {
-      //       final taskList = snapshot.data ?? [];
-
-      //       if (taskList.isEmpty) {
-      //         return const EmptyBuilder();
-      //       } else {
-      //         return _buildList(taskList);
-      //       }
-      //     } else if (snapshot.hasError) {
-      //       return const ErrorBuilder();
-      //     } else {
-      //       return const Loader();
-      //     }
-      //   }),
-      // ),
       floatingActionButton: FloatingActionButton.extended(
           onPressed: () async {
-            // Create new task
+            // Navigate to Create Edit Page
+            // Pass a Task.empty() object if its a new task
             Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -71,14 +56,59 @@ class _HomePageState extends State<HomePage> {
                           isNew: true,
                           task: Task.empty(),
                         ))));
-            // context.read<TaskRepository>().add(Task.dummy());
           },
           label: const Text('Add Task')),
     );
   }
 
+  Widget _buildDisplayMode() {
+    return BlocBuilder<TaskBloc, TaskState>(
+      buildWhen: (previous, current) =>
+          previous.displayMode != current.displayMode ||
+          previous.isBusy != current.isBusy,
+      builder: (context, state) {
+        return Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Row(
+              children: [
+                Radio(
+                  value: "All",
+                  groupValue: state.displayMode,
+                  onChanged: (value) {},
+                ),
+                Text("All (${state.taskList.length})")
+              ],
+            ),
+            Row(
+              children: [
+                Radio(
+                  value: "Active",
+                  groupValue: state.displayMode,
+                  onChanged: (value) {},
+                ),
+                Text("Active (${state.activeTaskList.length})")
+              ],
+            ),
+            Row(
+              children: [
+                Radio(
+                  value: "Completed",
+                  groupValue: state.displayMode,
+                  onChanged: (value) {},
+                ),
+                Text("Completed (${state.completedTaskList.length})")
+              ],
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   Widget _buildList(List<Task> taskList) {
     return ListView.separated(
+        shrinkWrap: true,
         physics: const ClampingScrollPhysics(),
         separatorBuilder: (_, __) => const Divider(),
         itemCount: taskList.length,
@@ -89,11 +119,11 @@ class _HomePageState extends State<HomePage> {
             onCompleteToggle: (bool? newValue) {
               // Toggle the complete status
               final updatedTask = task.copyWith(isComplete: newValue ?? false);
-              context.read<TaskRepository>().update(updatedTask);
-              final message = newValue == true
-                  ? "${updatedTask.title} is marked as `Completed`"
-                  : "${updatedTask.title} is resumed!";
-              showSnack(context, message);
+              // context.read<TaskRepository>().update(updatedTask);
+              // final message = newValue == true
+              //     ? "${updatedTask.title} is marked as `Completed`"
+              //     : "${updatedTask.title} is resumed!";
+              // showSnack(context, message);
             },
             onView: () {
               // Edit the task
@@ -107,8 +137,7 @@ class _HomePageState extends State<HomePage> {
             },
             onDelete: () {
               // delete task
-              context.read<TaskRepository>().delete(task);
-              showSnack(context, "${task.title} is successfully deleted!");
+              context.read<TaskBloc>().add(TaskEvent.delete(task: task));
             },
             onChangePriority: (newValue) {},
           );
