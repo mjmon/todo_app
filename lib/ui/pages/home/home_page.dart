@@ -4,13 +4,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rocket_todo/core/model/task.dart';
 import 'package:rocket_todo/data/task_repository.dart';
 import 'package:rocket_todo/state/bloc/task_bloc.dart';
-import 'package:rocket_todo/ui/create_edit_page.dart';
+import 'package:rocket_todo/ui/pages/create_edit/create_edit_page.dart';
+import 'package:rocket_todo/ui/pages/home/widgets/empty_builder.dart';
+import 'package:rocket_todo/ui/pages/home/widgets/error_builder.dart';
+import 'package:rocket_todo/ui/pages/home/widgets/loader.dart';
 import 'package:rocket_todo/ui/popups/common_dialogs.dart';
 import 'package:rocket_todo/ui/popups/common_snack.dart';
-import 'package:rocket_todo/ui/widgets/empty_builder.dart';
-import 'package:rocket_todo/ui/widgets/error_builder.dart';
-import 'package:rocket_todo/ui/widgets/loader.dart';
-import 'package:rocket_todo/ui/widgets/task_item.dart';
+import 'package:rocket_todo/ui/pages/home/widgets/task_item.dart';
 
 /// here all the tasks are displayed
 class HomePage extends StatelessWidget {
@@ -36,9 +36,7 @@ class HomePage extends StatelessWidget {
             }
             return Column(
               children: [
-                _buildDisplayMode(),
-
-                // Expanded(child: _buildDisplayMode()),
+                _buildDisplayToggle(),
                 Expanded(child: _buildList(state.taskList)),
               ],
             );
@@ -61,7 +59,7 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget _buildDisplayMode() {
+  Widget _buildDisplayToggle() {
     return BlocBuilder<TaskBloc, TaskState>(
       buildWhen: (previous, current) =>
           previous.displayMode != current.displayMode ||
@@ -119,11 +117,7 @@ class HomePage extends StatelessWidget {
             onCompleteToggle: (bool? newValue) {
               // Toggle the complete status
               final updatedTask = task.copyWith(isComplete: newValue ?? false);
-              // context.read<TaskRepository>().update(updatedTask);
-              // final message = newValue == true
-              //     ? "${updatedTask.title} is marked as `Completed`"
-              //     : "${updatedTask.title} is resumed!";
-              // showSnack(context, message);
+              context.read<TaskBloc>().add(TaskEvent.update(task: updatedTask));
             },
             onView: () {
               // Edit the task
