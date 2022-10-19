@@ -13,12 +13,28 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
   TaskBloc({required TaskRepository taskRepository})
       : _taskRepository = taskRepository,
         super(TaskState.initial()) {
-    on<TaskEvent>((event, emit) {
-      event.map(
-          fetch: (_Fetch e) {},
-          add: (_Add e) {},
-          edit: (_Edit e) {},
-          delete: (_Delete e) {});
+    _taskRepository.stream().listen(((_) {
+      add(const TaskEvent.fetch());
+    }));
+
+    on<TaskEvent>((event, emit) async {
+      await event.map(
+          fetch: (Fetch e) => fetchTaskHandler(e, emit),
+          add: (Add e) {},
+          edit: (Edit e) {},
+          delete: (Delete e) {});
     });
+  }
+
+  Future<void> fetchTaskHandler(Fetch e, Emitter<TaskState> emit) async {
+    try {
+      emit(state.copyWith(isBusy: true));
+      final taskList = await _taskRepository.fetch();
+      emit(state.copyWith(
+          taskList: taskList, isBusy: false, errorMessage: null));
+    } catch (e) {
+      emit(state.copyWith(
+          isBusy: false, errorMessage: "Failed in fetching tasks: $e"));
+    }
   }
 }

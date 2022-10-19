@@ -18,7 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$TaskEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<Task> taskList) fetch,
+    required TResult Function() fetch,
     required TResult Function(Task task) add,
     required TResult Function(Task task) edit,
     required TResult Function(Task task) delete,
@@ -26,7 +26,7 @@ mixin _$TaskEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<Task> taskList)? fetch,
+    TResult? Function()? fetch,
     TResult? Function(Task task)? add,
     TResult? Function(Task task)? edit,
     TResult? Function(Task task)? delete,
@@ -34,7 +34,7 @@ mixin _$TaskEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<Task> taskList)? fetch,
+    TResult Function()? fetch,
     TResult Function(Task task)? add,
     TResult Function(Task task)? edit,
     TResult Function(Task task)? delete,
@@ -43,26 +43,26 @@ mixin _$TaskEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Fetch value) fetch,
-    required TResult Function(_Add value) add,
-    required TResult Function(_Edit value) edit,
-    required TResult Function(_Delete value) delete,
+    required TResult Function(Fetch value) fetch,
+    required TResult Function(Add value) add,
+    required TResult Function(Edit value) edit,
+    required TResult Function(Delete value) delete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Fetch value)? fetch,
-    TResult? Function(_Add value)? add,
-    TResult? Function(_Edit value)? edit,
-    TResult? Function(_Delete value)? delete,
+    TResult? Function(Fetch value)? fetch,
+    TResult? Function(Add value)? add,
+    TResult? Function(Edit value)? edit,
+    TResult? Function(Delete value)? delete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Fetch value)? fetch,
-    TResult Function(_Add value)? add,
-    TResult Function(_Edit value)? edit,
-    TResult Function(_Delete value)? delete,
+    TResult Function(Fetch value)? fetch,
+    TResult Function(Add value)? add,
+    TResult Function(Edit value)? edit,
+    TResult Function(Delete value)? delete,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -86,102 +86,70 @@ class _$TaskEventCopyWithImpl<$Res, $Val extends TaskEvent>
 }
 
 /// @nodoc
-abstract class _$$_FetchCopyWith<$Res> {
-  factory _$$_FetchCopyWith(_$_Fetch value, $Res Function(_$_Fetch) then) =
-      __$$_FetchCopyWithImpl<$Res>;
-  @useResult
-  $Res call({List<Task> taskList});
+abstract class _$$FetchCopyWith<$Res> {
+  factory _$$FetchCopyWith(_$Fetch value, $Res Function(_$Fetch) then) =
+      __$$FetchCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_FetchCopyWithImpl<$Res>
-    extends _$TaskEventCopyWithImpl<$Res, _$_Fetch>
-    implements _$$_FetchCopyWith<$Res> {
-  __$$_FetchCopyWithImpl(_$_Fetch _value, $Res Function(_$_Fetch) _then)
+class __$$FetchCopyWithImpl<$Res> extends _$TaskEventCopyWithImpl<$Res, _$Fetch>
+    implements _$$FetchCopyWith<$Res> {
+  __$$FetchCopyWithImpl(_$Fetch _value, $Res Function(_$Fetch) _then)
       : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? taskList = null,
-  }) {
-    return _then(_$_Fetch(
-      taskList: null == taskList
-          ? _value._taskList
-          : taskList // ignore: cast_nullable_to_non_nullable
-              as List<Task>,
-    ));
-  }
 }
 
 /// @nodoc
 
-class _$_Fetch implements _Fetch {
-  const _$_Fetch({required final List<Task> taskList}) : _taskList = taskList;
-
-  final List<Task> _taskList;
-  @override
-  List<Task> get taskList {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_taskList);
-  }
+class _$Fetch implements Fetch {
+  const _$Fetch();
 
   @override
   String toString() {
-    return 'TaskEvent.fetch(taskList: $taskList)';
+    return 'TaskEvent.fetch()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_Fetch &&
-            const DeepCollectionEquality().equals(other._taskList, _taskList));
+        (other.runtimeType == runtimeType && other is _$Fetch);
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_taskList));
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_FetchCopyWith<_$_Fetch> get copyWith =>
-      __$$_FetchCopyWithImpl<_$_Fetch>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<Task> taskList) fetch,
+    required TResult Function() fetch,
     required TResult Function(Task task) add,
     required TResult Function(Task task) edit,
     required TResult Function(Task task) delete,
   }) {
-    return fetch(taskList);
+    return fetch();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<Task> taskList)? fetch,
+    TResult? Function()? fetch,
     TResult? Function(Task task)? add,
     TResult? Function(Task task)? edit,
     TResult? Function(Task task)? delete,
   }) {
-    return fetch?.call(taskList);
+    return fetch?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<Task> taskList)? fetch,
+    TResult Function()? fetch,
     TResult Function(Task task)? add,
     TResult Function(Task task)? edit,
     TResult Function(Task task)? delete,
     required TResult orElse(),
   }) {
     if (fetch != null) {
-      return fetch(taskList);
+      return fetch();
     }
     return orElse();
   }
@@ -189,10 +157,10 @@ class _$_Fetch implements _Fetch {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Fetch value) fetch,
-    required TResult Function(_Add value) add,
-    required TResult Function(_Edit value) edit,
-    required TResult Function(_Delete value) delete,
+    required TResult Function(Fetch value) fetch,
+    required TResult Function(Add value) add,
+    required TResult Function(Edit value) edit,
+    required TResult Function(Delete value) delete,
   }) {
     return fetch(this);
   }
@@ -200,10 +168,10 @@ class _$_Fetch implements _Fetch {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Fetch value)? fetch,
-    TResult? Function(_Add value)? add,
-    TResult? Function(_Edit value)? edit,
-    TResult? Function(_Delete value)? delete,
+    TResult? Function(Fetch value)? fetch,
+    TResult? Function(Add value)? add,
+    TResult? Function(Edit value)? edit,
+    TResult? Function(Delete value)? delete,
   }) {
     return fetch?.call(this);
   }
@@ -211,10 +179,10 @@ class _$_Fetch implements _Fetch {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Fetch value)? fetch,
-    TResult Function(_Add value)? add,
-    TResult Function(_Edit value)? edit,
-    TResult Function(_Delete value)? delete,
+    TResult Function(Fetch value)? fetch,
+    TResult Function(Add value)? add,
+    TResult Function(Edit value)? edit,
+    TResult Function(Delete value)? delete,
     required TResult orElse(),
   }) {
     if (fetch != null) {
@@ -224,19 +192,14 @@ class _$_Fetch implements _Fetch {
   }
 }
 
-abstract class _Fetch implements TaskEvent {
-  const factory _Fetch({required final List<Task> taskList}) = _$_Fetch;
-
-  List<Task> get taskList;
-  @JsonKey(ignore: true)
-  _$$_FetchCopyWith<_$_Fetch> get copyWith =>
-      throw _privateConstructorUsedError;
+abstract class Fetch implements TaskEvent {
+  const factory Fetch() = _$Fetch;
 }
 
 /// @nodoc
-abstract class _$$_AddCopyWith<$Res> {
-  factory _$$_AddCopyWith(_$_Add value, $Res Function(_$_Add) then) =
-      __$$_AddCopyWithImpl<$Res>;
+abstract class _$$AddCopyWith<$Res> {
+  factory _$$AddCopyWith(_$Add value, $Res Function(_$Add) then) =
+      __$$AddCopyWithImpl<$Res>;
   @useResult
   $Res call({Task task});
 
@@ -244,9 +207,9 @@ abstract class _$$_AddCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_AddCopyWithImpl<$Res> extends _$TaskEventCopyWithImpl<$Res, _$_Add>
-    implements _$$_AddCopyWith<$Res> {
-  __$$_AddCopyWithImpl(_$_Add _value, $Res Function(_$_Add) _then)
+class __$$AddCopyWithImpl<$Res> extends _$TaskEventCopyWithImpl<$Res, _$Add>
+    implements _$$AddCopyWith<$Res> {
+  __$$AddCopyWithImpl(_$Add _value, $Res Function(_$Add) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -254,7 +217,7 @@ class __$$_AddCopyWithImpl<$Res> extends _$TaskEventCopyWithImpl<$Res, _$_Add>
   $Res call({
     Object? task = null,
   }) {
-    return _then(_$_Add(
+    return _then(_$Add(
       task: null == task
           ? _value.task
           : task // ignore: cast_nullable_to_non_nullable
@@ -273,8 +236,8 @@ class __$$_AddCopyWithImpl<$Res> extends _$TaskEventCopyWithImpl<$Res, _$_Add>
 
 /// @nodoc
 
-class _$_Add implements _Add {
-  const _$_Add({required this.task});
+class _$Add implements Add {
+  const _$Add({required this.task});
 
   @override
   final Task task;
@@ -288,7 +251,7 @@ class _$_Add implements _Add {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Add &&
+            other is _$Add &&
             (identical(other.task, task) || other.task == task));
   }
 
@@ -298,13 +261,13 @@ class _$_Add implements _Add {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_AddCopyWith<_$_Add> get copyWith =>
-      __$$_AddCopyWithImpl<_$_Add>(this, _$identity);
+  _$$AddCopyWith<_$Add> get copyWith =>
+      __$$AddCopyWithImpl<_$Add>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<Task> taskList) fetch,
+    required TResult Function() fetch,
     required TResult Function(Task task) add,
     required TResult Function(Task task) edit,
     required TResult Function(Task task) delete,
@@ -315,7 +278,7 @@ class _$_Add implements _Add {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<Task> taskList)? fetch,
+    TResult? Function()? fetch,
     TResult? Function(Task task)? add,
     TResult? Function(Task task)? edit,
     TResult? Function(Task task)? delete,
@@ -326,7 +289,7 @@ class _$_Add implements _Add {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<Task> taskList)? fetch,
+    TResult Function()? fetch,
     TResult Function(Task task)? add,
     TResult Function(Task task)? edit,
     TResult Function(Task task)? delete,
@@ -341,10 +304,10 @@ class _$_Add implements _Add {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Fetch value) fetch,
-    required TResult Function(_Add value) add,
-    required TResult Function(_Edit value) edit,
-    required TResult Function(_Delete value) delete,
+    required TResult Function(Fetch value) fetch,
+    required TResult Function(Add value) add,
+    required TResult Function(Edit value) edit,
+    required TResult Function(Delete value) delete,
   }) {
     return add(this);
   }
@@ -352,10 +315,10 @@ class _$_Add implements _Add {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Fetch value)? fetch,
-    TResult? Function(_Add value)? add,
-    TResult? Function(_Edit value)? edit,
-    TResult? Function(_Delete value)? delete,
+    TResult? Function(Fetch value)? fetch,
+    TResult? Function(Add value)? add,
+    TResult? Function(Edit value)? edit,
+    TResult? Function(Delete value)? delete,
   }) {
     return add?.call(this);
   }
@@ -363,10 +326,10 @@ class _$_Add implements _Add {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Fetch value)? fetch,
-    TResult Function(_Add value)? add,
-    TResult Function(_Edit value)? edit,
-    TResult Function(_Delete value)? delete,
+    TResult Function(Fetch value)? fetch,
+    TResult Function(Add value)? add,
+    TResult Function(Edit value)? edit,
+    TResult Function(Delete value)? delete,
     required TResult orElse(),
   }) {
     if (add != null) {
@@ -376,18 +339,18 @@ class _$_Add implements _Add {
   }
 }
 
-abstract class _Add implements TaskEvent {
-  const factory _Add({required final Task task}) = _$_Add;
+abstract class Add implements TaskEvent {
+  const factory Add({required final Task task}) = _$Add;
 
   Task get task;
   @JsonKey(ignore: true)
-  _$$_AddCopyWith<_$_Add> get copyWith => throw _privateConstructorUsedError;
+  _$$AddCopyWith<_$Add> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_EditCopyWith<$Res> {
-  factory _$$_EditCopyWith(_$_Edit value, $Res Function(_$_Edit) then) =
-      __$$_EditCopyWithImpl<$Res>;
+abstract class _$$EditCopyWith<$Res> {
+  factory _$$EditCopyWith(_$Edit value, $Res Function(_$Edit) then) =
+      __$$EditCopyWithImpl<$Res>;
   @useResult
   $Res call({Task task});
 
@@ -395,9 +358,9 @@ abstract class _$$_EditCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_EditCopyWithImpl<$Res> extends _$TaskEventCopyWithImpl<$Res, _$_Edit>
-    implements _$$_EditCopyWith<$Res> {
-  __$$_EditCopyWithImpl(_$_Edit _value, $Res Function(_$_Edit) _then)
+class __$$EditCopyWithImpl<$Res> extends _$TaskEventCopyWithImpl<$Res, _$Edit>
+    implements _$$EditCopyWith<$Res> {
+  __$$EditCopyWithImpl(_$Edit _value, $Res Function(_$Edit) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -405,7 +368,7 @@ class __$$_EditCopyWithImpl<$Res> extends _$TaskEventCopyWithImpl<$Res, _$_Edit>
   $Res call({
     Object? task = null,
   }) {
-    return _then(_$_Edit(
+    return _then(_$Edit(
       task: null == task
           ? _value.task
           : task // ignore: cast_nullable_to_non_nullable
@@ -424,8 +387,8 @@ class __$$_EditCopyWithImpl<$Res> extends _$TaskEventCopyWithImpl<$Res, _$_Edit>
 
 /// @nodoc
 
-class _$_Edit implements _Edit {
-  const _$_Edit({required this.task});
+class _$Edit implements Edit {
+  const _$Edit({required this.task});
 
   @override
   final Task task;
@@ -439,7 +402,7 @@ class _$_Edit implements _Edit {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Edit &&
+            other is _$Edit &&
             (identical(other.task, task) || other.task == task));
   }
 
@@ -449,13 +412,13 @@ class _$_Edit implements _Edit {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_EditCopyWith<_$_Edit> get copyWith =>
-      __$$_EditCopyWithImpl<_$_Edit>(this, _$identity);
+  _$$EditCopyWith<_$Edit> get copyWith =>
+      __$$EditCopyWithImpl<_$Edit>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<Task> taskList) fetch,
+    required TResult Function() fetch,
     required TResult Function(Task task) add,
     required TResult Function(Task task) edit,
     required TResult Function(Task task) delete,
@@ -466,7 +429,7 @@ class _$_Edit implements _Edit {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<Task> taskList)? fetch,
+    TResult? Function()? fetch,
     TResult? Function(Task task)? add,
     TResult? Function(Task task)? edit,
     TResult? Function(Task task)? delete,
@@ -477,7 +440,7 @@ class _$_Edit implements _Edit {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<Task> taskList)? fetch,
+    TResult Function()? fetch,
     TResult Function(Task task)? add,
     TResult Function(Task task)? edit,
     TResult Function(Task task)? delete,
@@ -492,10 +455,10 @@ class _$_Edit implements _Edit {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Fetch value) fetch,
-    required TResult Function(_Add value) add,
-    required TResult Function(_Edit value) edit,
-    required TResult Function(_Delete value) delete,
+    required TResult Function(Fetch value) fetch,
+    required TResult Function(Add value) add,
+    required TResult Function(Edit value) edit,
+    required TResult Function(Delete value) delete,
   }) {
     return edit(this);
   }
@@ -503,10 +466,10 @@ class _$_Edit implements _Edit {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Fetch value)? fetch,
-    TResult? Function(_Add value)? add,
-    TResult? Function(_Edit value)? edit,
-    TResult? Function(_Delete value)? delete,
+    TResult? Function(Fetch value)? fetch,
+    TResult? Function(Add value)? add,
+    TResult? Function(Edit value)? edit,
+    TResult? Function(Delete value)? delete,
   }) {
     return edit?.call(this);
   }
@@ -514,10 +477,10 @@ class _$_Edit implements _Edit {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Fetch value)? fetch,
-    TResult Function(_Add value)? add,
-    TResult Function(_Edit value)? edit,
-    TResult Function(_Delete value)? delete,
+    TResult Function(Fetch value)? fetch,
+    TResult Function(Add value)? add,
+    TResult Function(Edit value)? edit,
+    TResult Function(Delete value)? delete,
     required TResult orElse(),
   }) {
     if (edit != null) {
@@ -527,18 +490,18 @@ class _$_Edit implements _Edit {
   }
 }
 
-abstract class _Edit implements TaskEvent {
-  const factory _Edit({required final Task task}) = _$_Edit;
+abstract class Edit implements TaskEvent {
+  const factory Edit({required final Task task}) = _$Edit;
 
   Task get task;
   @JsonKey(ignore: true)
-  _$$_EditCopyWith<_$_Edit> get copyWith => throw _privateConstructorUsedError;
+  _$$EditCopyWith<_$Edit> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_DeleteCopyWith<$Res> {
-  factory _$$_DeleteCopyWith(_$_Delete value, $Res Function(_$_Delete) then) =
-      __$$_DeleteCopyWithImpl<$Res>;
+abstract class _$$DeleteCopyWith<$Res> {
+  factory _$$DeleteCopyWith(_$Delete value, $Res Function(_$Delete) then) =
+      __$$DeleteCopyWithImpl<$Res>;
   @useResult
   $Res call({Task task});
 
@@ -546,10 +509,10 @@ abstract class _$$_DeleteCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_DeleteCopyWithImpl<$Res>
-    extends _$TaskEventCopyWithImpl<$Res, _$_Delete>
-    implements _$$_DeleteCopyWith<$Res> {
-  __$$_DeleteCopyWithImpl(_$_Delete _value, $Res Function(_$_Delete) _then)
+class __$$DeleteCopyWithImpl<$Res>
+    extends _$TaskEventCopyWithImpl<$Res, _$Delete>
+    implements _$$DeleteCopyWith<$Res> {
+  __$$DeleteCopyWithImpl(_$Delete _value, $Res Function(_$Delete) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -557,7 +520,7 @@ class __$$_DeleteCopyWithImpl<$Res>
   $Res call({
     Object? task = null,
   }) {
-    return _then(_$_Delete(
+    return _then(_$Delete(
       task: null == task
           ? _value.task
           : task // ignore: cast_nullable_to_non_nullable
@@ -576,8 +539,8 @@ class __$$_DeleteCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Delete implements _Delete {
-  const _$_Delete({required this.task});
+class _$Delete implements Delete {
+  const _$Delete({required this.task});
 
   @override
   final Task task;
@@ -591,7 +554,7 @@ class _$_Delete implements _Delete {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Delete &&
+            other is _$Delete &&
             (identical(other.task, task) || other.task == task));
   }
 
@@ -601,13 +564,13 @@ class _$_Delete implements _Delete {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_DeleteCopyWith<_$_Delete> get copyWith =>
-      __$$_DeleteCopyWithImpl<_$_Delete>(this, _$identity);
+  _$$DeleteCopyWith<_$Delete> get copyWith =>
+      __$$DeleteCopyWithImpl<_$Delete>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<Task> taskList) fetch,
+    required TResult Function() fetch,
     required TResult Function(Task task) add,
     required TResult Function(Task task) edit,
     required TResult Function(Task task) delete,
@@ -618,7 +581,7 @@ class _$_Delete implements _Delete {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<Task> taskList)? fetch,
+    TResult? Function()? fetch,
     TResult? Function(Task task)? add,
     TResult? Function(Task task)? edit,
     TResult? Function(Task task)? delete,
@@ -629,7 +592,7 @@ class _$_Delete implements _Delete {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<Task> taskList)? fetch,
+    TResult Function()? fetch,
     TResult Function(Task task)? add,
     TResult Function(Task task)? edit,
     TResult Function(Task task)? delete,
@@ -644,10 +607,10 @@ class _$_Delete implements _Delete {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Fetch value) fetch,
-    required TResult Function(_Add value) add,
-    required TResult Function(_Edit value) edit,
-    required TResult Function(_Delete value) delete,
+    required TResult Function(Fetch value) fetch,
+    required TResult Function(Add value) add,
+    required TResult Function(Edit value) edit,
+    required TResult Function(Delete value) delete,
   }) {
     return delete(this);
   }
@@ -655,10 +618,10 @@ class _$_Delete implements _Delete {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Fetch value)? fetch,
-    TResult? Function(_Add value)? add,
-    TResult? Function(_Edit value)? edit,
-    TResult? Function(_Delete value)? delete,
+    TResult? Function(Fetch value)? fetch,
+    TResult? Function(Add value)? add,
+    TResult? Function(Edit value)? edit,
+    TResult? Function(Delete value)? delete,
   }) {
     return delete?.call(this);
   }
@@ -666,10 +629,10 @@ class _$_Delete implements _Delete {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Fetch value)? fetch,
-    TResult Function(_Add value)? add,
-    TResult Function(_Edit value)? edit,
-    TResult Function(_Delete value)? delete,
+    TResult Function(Fetch value)? fetch,
+    TResult Function(Add value)? add,
+    TResult Function(Edit value)? edit,
+    TResult Function(Delete value)? delete,
     required TResult orElse(),
   }) {
     if (delete != null) {
@@ -679,12 +642,12 @@ class _$_Delete implements _Delete {
   }
 }
 
-abstract class _Delete implements TaskEvent {
-  const factory _Delete({required final Task task}) = _$_Delete;
+abstract class Delete implements TaskEvent {
+  const factory Delete({required final Task task}) = _$Delete;
 
   Task get task;
   @JsonKey(ignore: true)
-  _$$_DeleteCopyWith<_$_Delete> get copyWith =>
+  _$$DeleteCopyWith<_$Delete> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -694,8 +657,8 @@ mixin _$TaskState {
   List<Task> get activeTaskList => throw _privateConstructorUsedError;
   List<Task> get completedTaskList => throw _privateConstructorUsedError;
   bool get isBusy => throw _privateConstructorUsedError;
-  String get errorMessage => throw _privateConstructorUsedError;
-  String get successMessage => throw _privateConstructorUsedError;
+  String? get errorMessage => throw _privateConstructorUsedError;
+  String? get successMessage => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $TaskStateCopyWith<TaskState> get copyWith =>
@@ -712,8 +675,8 @@ abstract class $TaskStateCopyWith<$Res> {
       List<Task> activeTaskList,
       List<Task> completedTaskList,
       bool isBusy,
-      String errorMessage,
-      String successMessage});
+      String? errorMessage,
+      String? successMessage});
 }
 
 /// @nodoc
@@ -733,8 +696,8 @@ class _$TaskStateCopyWithImpl<$Res, $Val extends TaskState>
     Object? activeTaskList = null,
     Object? completedTaskList = null,
     Object? isBusy = null,
-    Object? errorMessage = null,
-    Object? successMessage = null,
+    Object? errorMessage = freezed,
+    Object? successMessage = freezed,
   }) {
     return _then(_value.copyWith(
       taskList: null == taskList
@@ -753,14 +716,14 @@ class _$TaskStateCopyWithImpl<$Res, $Val extends TaskState>
           ? _value.isBusy
           : isBusy // ignore: cast_nullable_to_non_nullable
               as bool,
-      errorMessage: null == errorMessage
+      errorMessage: freezed == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
-              as String,
-      successMessage: null == successMessage
+              as String?,
+      successMessage: freezed == successMessage
           ? _value.successMessage
           : successMessage // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 }
@@ -777,8 +740,8 @@ abstract class _$$_TaskStateCopyWith<$Res> implements $TaskStateCopyWith<$Res> {
       List<Task> activeTaskList,
       List<Task> completedTaskList,
       bool isBusy,
-      String errorMessage,
-      String successMessage});
+      String? errorMessage,
+      String? successMessage});
 }
 
 /// @nodoc
@@ -796,8 +759,8 @@ class __$$_TaskStateCopyWithImpl<$Res>
     Object? activeTaskList = null,
     Object? completedTaskList = null,
     Object? isBusy = null,
-    Object? errorMessage = null,
-    Object? successMessage = null,
+    Object? errorMessage = freezed,
+    Object? successMessage = freezed,
   }) {
     return _then(_$_TaskState(
       taskList: null == taskList
@@ -816,14 +779,14 @@ class __$$_TaskStateCopyWithImpl<$Res>
           ? _value.isBusy
           : isBusy // ignore: cast_nullable_to_non_nullable
               as bool,
-      errorMessage: null == errorMessage
+      errorMessage: freezed == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
-              as String,
-      successMessage: null == successMessage
+              as String?,
+      successMessage: freezed == successMessage
           ? _value.successMessage
           : successMessage // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -866,9 +829,9 @@ class _$_TaskState implements _TaskState {
   @override
   final bool isBusy;
   @override
-  final String errorMessage;
+  final String? errorMessage;
   @override
-  final String successMessage;
+  final String? successMessage;
 
   @override
   String toString() {
@@ -915,8 +878,8 @@ abstract class _TaskState implements TaskState {
       required final List<Task> activeTaskList,
       required final List<Task> completedTaskList,
       required final bool isBusy,
-      required final String errorMessage,
-      required final String successMessage}) = _$_TaskState;
+      required final String? errorMessage,
+      required final String? successMessage}) = _$_TaskState;
 
   @override
   List<Task> get taskList;
@@ -927,9 +890,9 @@ abstract class _TaskState implements TaskState {
   @override
   bool get isBusy;
   @override
-  String get errorMessage;
+  String? get errorMessage;
   @override
-  String get successMessage;
+  String? get successMessage;
   @override
   @JsonKey(ignore: true)
   _$$_TaskStateCopyWith<_$_TaskState> get copyWith =>

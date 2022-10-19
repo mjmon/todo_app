@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rocket_todo/core/model/task.dart';
 import 'package:rocket_todo/data/task_repository.dart';
+import 'package:rocket_todo/state/bloc/task_bloc.dart';
 import 'package:rocket_todo/ui/create_edit_page.dart';
 import 'package:rocket_todo/ui/popups/common_dialogs.dart';
 import 'package:rocket_todo/ui/popups/common_snack.dart';
@@ -29,24 +30,37 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("My Tasks")),
-      body: StreamBuilder<List<Task>>(
-        stream: context.read<TaskRepository>().getStream(),
-        builder: ((context, snapshot) {
-          if (snapshot.hasData) {
-            final taskList = snapshot.data ?? [];
-
-            if (taskList.isEmpty) {
-              return const EmptyBuilder();
-            } else {
-              return _buildList(taskList);
-            }
-          } else if (snapshot.hasError) {
-            return const ErrorBuilder();
-          } else {
+      body: BlocConsumer<TaskBloc, TaskState>(
+        listener: (context, state) {},
+        buildWhen: (previous, current) => previous != current,
+        builder: (context, state) {
+          if (state.isBusy) {
             return const Loader();
           }
-        }),
+          if (state.taskList.isEmpty) {
+            return const EmptyBuilder();
+          }
+          return _buildList(state.taskList);
+        },
       ),
+      // StreamBuilder<List<Task>>(
+      //   stream: context.read<TaskRepository>().stream(),
+      //   builder: ((context, snapshot) {
+      //     if (snapshot.hasData) {
+      //       final taskList = snapshot.data ?? [];
+
+      //       if (taskList.isEmpty) {
+      //         return const EmptyBuilder();
+      //       } else {
+      //         return _buildList(taskList);
+      //       }
+      //     } else if (snapshot.hasError) {
+      //       return const ErrorBuilder();
+      //     } else {
+      //       return const Loader();
+      //     }
+      //   }),
+      // ),
       floatingActionButton: FloatingActionButton.extended(
           onPressed: () async {
             // Create new task

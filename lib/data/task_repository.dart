@@ -5,7 +5,8 @@ import 'package:rocket_todo/core/model/task.dart';
 import 'package:sembast/sembast.dart';
 
 abstract class IBaseRepository<T> {
-  Stream<List<T>> getStream();
+  Stream<dynamic> stream();
+  Future<List<T>> fetch();
   Future<void> add(T item);
   Future<void> update(T item);
   Future<void> delete(T item);
@@ -38,11 +39,28 @@ class TaskRepository implements IBaseRepository<Task> {
 
   /// listen to changes on the database
   @override
-  Stream<List<Task>> getStream() {
+  Stream<List<Task>> stream() {
     return _taskStore
         .query()
         .onSnapshots(_database)
         .transform(_taskStreamTransformer);
+  }
+
+  @override
+  Future<List<Task>> fetch() async {
+    final recordSnapshots = await _taskStore.find(
+      _database,
+    );
+
+    final taskList = [
+      ...recordSnapshots.map((snapshot) {
+        final task = Task.fromJson(snapshot.value as Map<String, dynamic>)
+            .copyWith(id: snapshot.key);
+        return task;
+      })
+    ];
+
+    return taskList;
   }
 }
 
