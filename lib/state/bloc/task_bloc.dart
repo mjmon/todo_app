@@ -24,7 +24,8 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
           update: (Update e) => _updateTaskHandler(e, emit),
           delete: (Delete e) => _deleteTaskhandler(e, emit),
           changeDisplayMode: (ChangeDisplayMode e) =>
-              _changeDisplayHandler(e, emit));
+              _changeDisplayHandler(e, emit),
+          changeSortby: (ChangeSortby e) => _changeSortbyHandler(e, emit));
     });
   }
 
@@ -102,5 +103,10 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
   Future<void> _changeDisplayHandler(
       ChangeDisplayMode e, Emitter<TaskState> emit) async {
     emit(state.copyWith(displayMode: e.mode));
+  }
+
+  Future<void> _changeSortbyHandler(
+      ChangeSortby e, Emitter<TaskState> emit) async {
+    emit(state.copyWith(sortBy: e.sortby));
   }
 }

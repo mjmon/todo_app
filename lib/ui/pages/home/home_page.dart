@@ -21,7 +21,12 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("My Tasks")),
+      appBar: AppBar(
+        title: const Text("My Tasks"),
+        actions: [IconButton(onPressed: () {
+          
+        }, icon: const Icon(Icons.sort))],
+      ),
       body: BlocConsumer<TaskBloc, TaskState>(
         listenWhen: (previous, current) => previous.isBusy != current.isBusy,
         listener: (context, state) {},
@@ -56,38 +61,5 @@ class HomePage extends StatelessWidget {
           },
           label: const Text('Add Task')),
     );
-  }
-
-  Widget _buildList(List<Task> taskList) {
-    return ListView.separated(
-        shrinkWrap: true,
-        physics: const ClampingScrollPhysics(),
-        separatorBuilder: (_, __) => const Divider(),
-        itemCount: taskList.length,
-        itemBuilder: ((context, index) {
-          final task = taskList.elementAt(index);
-          return TaskItem(
-            task: task,
-            onCompleteToggle: (bool? newValue) {
-              // Toggle the complete status
-              final updatedTask = task.copyWith(isComplete: newValue ?? false);
-              context.read<TaskBloc>().add(TaskEvent.update(task: updatedTask));
-            },
-            onView: () {
-              // Edit the task
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: ((context) => CreateEditPage(
-                            isNew: false,
-                            task: task,
-                          ))));
-            },
-            onDelete: () {
-              // delete task
-              context.read<TaskBloc>().add(TaskEvent.delete(task: task));
-            },
-          );
-        }));
   }
 }
