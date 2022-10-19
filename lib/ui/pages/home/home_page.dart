@@ -87,7 +87,6 @@ class HomePage extends StatelessWidget {
               // delete task
               context.read<TaskBloc>().add(TaskEvent.delete(task: task));
             },
-            onChangePriority: (newValue) {},
           );
         }));
   }

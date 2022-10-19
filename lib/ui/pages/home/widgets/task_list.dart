@@ -27,6 +27,7 @@ class TaskList extends StatelessWidget {
     if (list.isEmpty) {
       return const EmptyBuilder();
     }
+
     return ListView.separated(
         shrinkWrap: true,
         physics: const ClampingScrollPhysics(),
@@ -55,7 +56,6 @@ class TaskList extends StatelessWidget {
               // delete task
               context.read<TaskBloc>().add(TaskEvent.delete(task: task));
             },
-            onChangePriority: (newValue) {},
           );
         }));
   }
