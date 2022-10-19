@@ -23,23 +23,24 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
           add: (Add e) => _addTaskHandler(e, emit),
           update: (Update e) => _updateTaskHandler(e, emit),
           delete: (Delete e) => _deleteTaskhandler(e, emit),
-          changeDisplayMode: (ChangeDisplayMode e) {});
+          changeDisplayMode: (ChangeDisplayMode e) =>
+              _changeDisplayHandler(e, emit));
     });
   }
 
   Future<void> _fetchTaskHandler(Fetch e, Emitter<TaskState> emit) async {
     try {
       emit(state.copyWith(isBusy: true));
-      final kTaskList = await _taskRepository.fetch();
+      final kAllTaskList = await _taskRepository.fetch();
       final kActiveTaskList = [
-        ...kTaskList.where((task) => task.isComplete == false)
+        ...kAllTaskList.where((task) => task.isComplete == false)
       ];
       final kCompletedTaskList = [
-        ...kTaskList.where((task) => task.isComplete)
+        ...kAllTaskList.where((task) => task.isComplete)
       ];
 
       emit(state.copyWith(
-          taskList: kTaskList,
+          allTaskList: kAllTaskList,
           activeTaskList: kActiveTaskList,
           completedTaskList: kCompletedTaskList,
           isBusy: false,
@@ -96,5 +97,10 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
           successMessage: null,
           errorMessage: "Failed in deleting task: $e"));
     }
+  }
+
+  Future<void> _changeDisplayHandler(
+      ChangeDisplayMode e, Emitter<TaskState> emit) async {
+    emit(state.copyWith(displayMode: e.mode));
   }
 }

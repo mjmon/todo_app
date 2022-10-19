@@ -3,7 +3,7 @@ part of 'task_bloc.dart';
 @freezed
 class TaskState with _$TaskState {
   const factory TaskState(
-      {required List<Task> taskList,
+      {required List<Task> allTaskList,
       required List<Task> activeTaskList,
       required List<Task> completedTaskList,
       required String displayMode,
@@ -12,7 +12,7 @@ class TaskState with _$TaskState {
       required String? successMessage}) = _TaskState;
 
   factory TaskState.initial() => const TaskState(
-      taskList: [],
+      allTaskList: [],
       activeTaskList: [],
       completedTaskList: [],
       displayMode: 'All',

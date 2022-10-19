@@ -5,9 +5,11 @@ import 'package:rocket_todo/core/model/task.dart';
 import 'package:rocket_todo/data/task_repository.dart';
 import 'package:rocket_todo/state/bloc/task_bloc.dart';
 import 'package:rocket_todo/ui/pages/create_edit/create_edit_page.dart';
+import 'package:rocket_todo/ui/pages/home/widgets/display_mode_toggle.dart';
 import 'package:rocket_todo/ui/pages/home/widgets/empty_builder.dart';
 import 'package:rocket_todo/ui/pages/home/widgets/error_builder.dart';
 import 'package:rocket_todo/ui/pages/home/widgets/loader.dart';
+import 'package:rocket_todo/ui/pages/home/widgets/task_list.dart';
 import 'package:rocket_todo/ui/popups/common_dialogs.dart';
 import 'package:rocket_todo/ui/popups/common_snack.dart';
 import 'package:rocket_todo/ui/pages/home/widgets/task_item.dart';
@@ -31,13 +33,10 @@ class HomePage extends StatelessWidget {
             if (state.errorMessage != null) {
               return const ErrorBuilder();
             }
-            if (state.taskList.isEmpty) {
-              return const EmptyBuilder();
-            }
             return Column(
-              children: [
-                _buildDisplayToggle(),
-                Expanded(child: _buildList(state.taskList)),
+              children: const [
+                DisplayModeToggle(),
+                Expanded(child: TaskList()),
               ],
             );
           }
@@ -56,51 +55,6 @@ class HomePage extends StatelessWidget {
                         ))));
           },
           label: const Text('Add Task')),
-    );
-  }
-
-  Widget _buildDisplayToggle() {
-    return BlocBuilder<TaskBloc, TaskState>(
-      buildWhen: (previous, current) =>
-          previous.displayMode != current.displayMode ||
-          previous.isBusy != current.isBusy,
-      builder: (context, state) {
-        return Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Row(
-              children: [
-                Radio(
-                  value: "All",
-                  groupValue: state.displayMode,
-                  onChanged: (value) {},
-                ),
-                Text("All (${state.taskList.length})")
-              ],
-            ),
-            Row(
-              children: [
-                Radio(
-                  value: "Active",
-                  groupValue: state.displayMode,
-                  onChanged: (value) {},
-                ),
-                Text("Active (${state.activeTaskList.length})")
-              ],
-            ),
-            Row(
-              children: [
-                Radio(
-                  value: "Completed",
-                  groupValue: state.displayMode,
-                  onChanged: (value) {},
-                ),
-                Text("Completed (${state.completedTaskList.length})")
-              ],
-            ),
-          ],
-        );
-      },
     );
   }
 

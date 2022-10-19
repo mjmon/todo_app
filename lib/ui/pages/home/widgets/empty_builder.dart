@@ -7,7 +7,7 @@ class EmptyBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Center(
       child: Text(
-        "No tasks at the moment\nTap `Add Task` button to create one",
+        "No tasks found",
         textAlign: TextAlign.center,
       ),
     );

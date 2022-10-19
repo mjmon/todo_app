@@ -837,7 +837,7 @@ abstract class ChangeDisplayMode implements TaskEvent {
 
 /// @nodoc
 mixin _$TaskState {
-  List<Task> get taskList => throw _privateConstructorUsedError;
+  List<Task> get allTaskList => throw _privateConstructorUsedError;
   List<Task> get activeTaskList => throw _privateConstructorUsedError;
   List<Task> get completedTaskList => throw _privateConstructorUsedError;
   String get displayMode => throw _privateConstructorUsedError;
@@ -856,7 +856,7 @@ abstract class $TaskStateCopyWith<$Res> {
       _$TaskStateCopyWithImpl<$Res, TaskState>;
   @useResult
   $Res call(
-      {List<Task> taskList,
+      {List<Task> allTaskList,
       List<Task> activeTaskList,
       List<Task> completedTaskList,
       String displayMode,
@@ -878,7 +878,7 @@ class _$TaskStateCopyWithImpl<$Res, $Val extends TaskState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? taskList = null,
+    Object? allTaskList = null,
     Object? activeTaskList = null,
     Object? completedTaskList = null,
     Object? displayMode = null,
@@ -887,9 +887,9 @@ class _$TaskStateCopyWithImpl<$Res, $Val extends TaskState>
     Object? successMessage = freezed,
   }) {
     return _then(_value.copyWith(
-      taskList: null == taskList
-          ? _value.taskList
-          : taskList // ignore: cast_nullable_to_non_nullable
+      allTaskList: null == allTaskList
+          ? _value.allTaskList
+          : allTaskList // ignore: cast_nullable_to_non_nullable
               as List<Task>,
       activeTaskList: null == activeTaskList
           ? _value.activeTaskList
@@ -927,7 +927,7 @@ abstract class _$$_TaskStateCopyWith<$Res> implements $TaskStateCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {List<Task> taskList,
+      {List<Task> allTaskList,
       List<Task> activeTaskList,
       List<Task> completedTaskList,
       String displayMode,
@@ -947,7 +947,7 @@ class __$$_TaskStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? taskList = null,
+    Object? allTaskList = null,
     Object? activeTaskList = null,
     Object? completedTaskList = null,
     Object? displayMode = null,
@@ -956,9 +956,9 @@ class __$$_TaskStateCopyWithImpl<$Res>
     Object? successMessage = freezed,
   }) {
     return _then(_$_TaskState(
-      taskList: null == taskList
-          ? _value._taskList
-          : taskList // ignore: cast_nullable_to_non_nullable
+      allTaskList: null == allTaskList
+          ? _value._allTaskList
+          : allTaskList // ignore: cast_nullable_to_non_nullable
               as List<Task>,
       activeTaskList: null == activeTaskList
           ? _value._activeTaskList
@@ -992,22 +992,22 @@ class __$$_TaskStateCopyWithImpl<$Res>
 
 class _$_TaskState implements _TaskState {
   const _$_TaskState(
-      {required final List<Task> taskList,
+      {required final List<Task> allTaskList,
       required final List<Task> activeTaskList,
       required final List<Task> completedTaskList,
       required this.displayMode,
       required this.isBusy,
       required this.errorMessage,
       required this.successMessage})
-      : _taskList = taskList,
+      : _allTaskList = allTaskList,
         _activeTaskList = activeTaskList,
         _completedTaskList = completedTaskList;
 
-  final List<Task> _taskList;
+  final List<Task> _allTaskList;
   @override
-  List<Task> get taskList {
+  List<Task> get allTaskList {
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_taskList);
+    return EqualUnmodifiableListView(_allTaskList);
   }
 
   final List<Task> _activeTaskList;
@@ -1035,7 +1035,7 @@ class _$_TaskState implements _TaskState {
 
   @override
   String toString() {
-    return 'TaskState(taskList: $taskList, activeTaskList: $activeTaskList, completedTaskList: $completedTaskList, displayMode: $displayMode, isBusy: $isBusy, errorMessage: $errorMessage, successMessage: $successMessage)';
+    return 'TaskState(allTaskList: $allTaskList, activeTaskList: $activeTaskList, completedTaskList: $completedTaskList, displayMode: $displayMode, isBusy: $isBusy, errorMessage: $errorMessage, successMessage: $successMessage)';
   }
 
   @override
@@ -1043,7 +1043,8 @@ class _$_TaskState implements _TaskState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_TaskState &&
-            const DeepCollectionEquality().equals(other._taskList, _taskList) &&
+            const DeepCollectionEquality()
+                .equals(other._allTaskList, _allTaskList) &&
             const DeepCollectionEquality()
                 .equals(other._activeTaskList, _activeTaskList) &&
             const DeepCollectionEquality()
@@ -1060,7 +1061,7 @@ class _$_TaskState implements _TaskState {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(_taskList),
+      const DeepCollectionEquality().hash(_allTaskList),
       const DeepCollectionEquality().hash(_activeTaskList),
       const DeepCollectionEquality().hash(_completedTaskList),
       displayMode,
@@ -1077,7 +1078,7 @@ class _$_TaskState implements _TaskState {
 
 abstract class _TaskState implements TaskState {
   const factory _TaskState(
-      {required final List<Task> taskList,
+      {required final List<Task> allTaskList,
       required final List<Task> activeTaskList,
       required final List<Task> completedTaskList,
       required final String displayMode,
@@ -1086,7 +1087,7 @@ abstract class _TaskState implements TaskState {
       required final String? successMessage}) = _$_TaskState;
 
   @override
-  List<Task> get taskList;
+  List<Task> get allTaskList;
   @override
   List<Task> get activeTaskList;
   @override
