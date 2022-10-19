@@ -117,7 +117,9 @@ class _CreateEditPageState extends State<CreateEditPage> {
               TextFormField(
                   onTap: () async {
                     // show selection of priority level
-                    final result = await showPrioritySelectPopup(context);
+                    final result = await showPrioritySelectPopup(context,
+                        currentSelected: priorityValue);
+
                     if (result != null) {
                       setState(() {
                         priorityController.text =
@@ -144,13 +146,25 @@ class _CreateEditPageState extends State<CreateEditPage> {
       floatingActionButton: FloatingActionButton.extended(
           onPressed: () async {
             if (_formKey.currentState!.validate()) {
-              final newTask = Task(
-                  title: titleController.text.trim(),
-                  description: descController.text.trim(),
-                  priority: 2,
-                  isComplete: false);
+              final newTask = widget.isNew
+                  ? Task(
+                      title: titleController.text.trim(),
+                      description: descController.text.trim(),
+                      priority: priorityValue,
+                      isComplete: false)
+                  : widget.task.copyWith(
+                      title: titleController.text.trim(),
+                      description: descController.text.trim(),
+                      priority: priorityValue,
+                    );
 
-              await context.read<TaskRepository>().add(newTask);
+              if (widget.isNew) {
+                // add new task
+                await context.read<TaskRepository>().add(newTask);
+              } else {
+                //update the task
+                await context.read<TaskRepository>().update(newTask);
+              }
 
               if (mounted) {
                 final message = widget.isNew

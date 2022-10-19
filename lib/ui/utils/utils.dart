@@ -17,7 +17,7 @@ Color? getPriorityColorFromValue(int value) {
   } else if (value == 2) {
     return Colors.orange;
   } else if (value == 1) {
-    return Colors.yellow;
+    return Colors.grey;
   }
   return null;
 }
