@@ -5,9 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:rocket_todo/core/model/task.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rocket_todo/data/task_repository.dart';
+import 'package:rocket_todo/state/bloc/task_bloc.dart';
 import 'package:rocket_todo/ui/popups/common_dialogs.dart';
 import 'package:rocket_todo/ui/popups/common_snack.dart';
 import 'package:rocket_todo/ui/utils/utils.dart';
+import 'package:tap_debouncer/tap_debouncer.dart';
 
 class CreateEditPage extends StatefulWidget {
   const CreateEditPage({Key? key, required this.isNew, required this.task})
@@ -74,21 +76,10 @@ class _CreateEditPageState extends State<CreateEditPage> {
 
       if (widget.isNew) {
         // add new task
-        await context.read<TaskRepository>().add(newTask);
+        context.read<TaskBloc>().add(TaskEvent.add(task: newTask));
       } else {
         //update the task
-        await context.read<TaskRepository>().update(newTask);
-      }
-
-      if (mounted) {
-        final message = widget.isNew
-            ? "${newTask.title} is successfully added!"
-            : "${newTask.title} is successfully updated!";
-
-        showSnack(context, message);
-        await Future.delayed(const Duration(milliseconds: 300), () {
-          Navigator.pop(context);
-        });
+        context.read<TaskBloc>().add(TaskEvent.update(task: newTask));
       }
     }
   }
@@ -178,9 +169,29 @@ class _CreateEditPageState extends State<CreateEditPage> {
                   })),
             ],
           )),
-      floatingActionButton: FloatingActionButton.extended(
-          onPressed: handleAddEdit,
-          label: Text(widget.isNew ? 'Save' : 'Update')),
+      floatingActionButton: BlocListener<TaskBloc, TaskState>(
+        listenWhen: (previous, current) => previous.isBusy != current.isBusy,
+        listener: (context, state) async {
+          if (state.isBusy == false) {
+            if (state.errorMessage != null) {
+              showSnack(context, state.errorMessage ?? '');
+            } else if (state.successMessage != null) {
+              showSnack(context, state.successMessage ?? '');
+            }
+            await Future.delayed(const Duration(milliseconds: 200), () {
+              Navigator.pop(context);
+            });
+          }
+        },
+        child: TapDebouncer(
+            onTap: handleAddEdit,
+            cooldown: const Duration(milliseconds: 300),
+            builder: (context, ontap) {
+              return FloatingActionButton.extended(
+                  onPressed: ontap,
+                  label: Text(widget.isNew ? 'Save' : 'Update'));
+            }),
+      ),
     );
   }
 }

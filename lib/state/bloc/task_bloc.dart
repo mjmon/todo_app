@@ -20,8 +20,8 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
     on<TaskEvent>((event, emit) async {
       await event.map(
           fetch: (Fetch e) => fetchTaskHandler(e, emit),
-          add: (Add e) {},
-          edit: (Edit e) {},
+          add: (Add e) => addTaskHandler(e, emit),
+          update: (Update e) => updateTaskHandler(e, emit),
           delete: (Delete e) {});
     });
   }
@@ -35,6 +35,38 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
     } catch (e) {
       emit(state.copyWith(
           isBusy: false, errorMessage: "Failed in fetching tasks: $e"));
+    }
+  }
+
+  Future<void> addTaskHandler(Add e, Emitter<TaskState> emit) async {
+    try {
+      emit(state.copyWith(isBusy: true));
+      await _taskRepository.add(e.task);
+      emit(state.copyWith(
+          isBusy: false,
+          successMessage: "Successfully added!",
+          errorMessage: null));
+    } catch (e) {
+      emit(state.copyWith(
+          isBusy: false,
+          successMessage: null,
+          errorMessage: "Failed in adding task: $e"));
+    }
+  }
+
+  Future<void> updateTaskHandler(Update e, Emitter<TaskState> emit) async {
+    try {
+      emit(state.copyWith(isBusy: true));
+      await _taskRepository.update(e.task);
+      emit(state.copyWith(
+          isBusy: false,
+          successMessage: "Successfully updated!",
+          errorMessage: null));
+    } catch (e) {
+      emit(state.copyWith(
+          isBusy: false,
+          successMessage: null,
+          errorMessage: "Failed in updating task: $e"));
     }
   }
 }

@@ -32,7 +32,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(title: const Text("My Tasks")),
       body: BlocConsumer<TaskBloc, TaskState>(
         listener: (context, state) {},
-        buildWhen: (previous, current) => previous != current,
+        buildWhen: (previous, current) => previous.isBusy != current.isBusy,
         builder: (context, state) {
           if (state.isBusy) {
             return const Loader();

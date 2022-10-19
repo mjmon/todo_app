@@ -20,7 +20,7 @@ mixin _$TaskEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() fetch,
     required TResult Function(Task task) add,
-    required TResult Function(Task task) edit,
+    required TResult Function(Task task) update,
     required TResult Function(Task task) delete,
   }) =>
       throw _privateConstructorUsedError;
@@ -28,7 +28,7 @@ mixin _$TaskEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? fetch,
     TResult? Function(Task task)? add,
-    TResult? Function(Task task)? edit,
+    TResult? Function(Task task)? update,
     TResult? Function(Task task)? delete,
   }) =>
       throw _privateConstructorUsedError;
@@ -36,7 +36,7 @@ mixin _$TaskEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetch,
     TResult Function(Task task)? add,
-    TResult Function(Task task)? edit,
+    TResult Function(Task task)? update,
     TResult Function(Task task)? delete,
     required TResult orElse(),
   }) =>
@@ -45,7 +45,7 @@ mixin _$TaskEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(Fetch value) fetch,
     required TResult Function(Add value) add,
-    required TResult Function(Edit value) edit,
+    required TResult Function(Update value) update,
     required TResult Function(Delete value) delete,
   }) =>
       throw _privateConstructorUsedError;
@@ -53,7 +53,7 @@ mixin _$TaskEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Fetch value)? fetch,
     TResult? Function(Add value)? add,
-    TResult? Function(Edit value)? edit,
+    TResult? Function(Update value)? update,
     TResult? Function(Delete value)? delete,
   }) =>
       throw _privateConstructorUsedError;
@@ -61,7 +61,7 @@ mixin _$TaskEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Fetch value)? fetch,
     TResult Function(Add value)? add,
-    TResult Function(Edit value)? edit,
+    TResult Function(Update value)? update,
     TResult Function(Delete value)? delete,
     required TResult orElse(),
   }) =>
@@ -122,7 +122,7 @@ class _$Fetch implements Fetch {
   TResult when<TResult extends Object?>({
     required TResult Function() fetch,
     required TResult Function(Task task) add,
-    required TResult Function(Task task) edit,
+    required TResult Function(Task task) update,
     required TResult Function(Task task) delete,
   }) {
     return fetch();
@@ -133,7 +133,7 @@ class _$Fetch implements Fetch {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? fetch,
     TResult? Function(Task task)? add,
-    TResult? Function(Task task)? edit,
+    TResult? Function(Task task)? update,
     TResult? Function(Task task)? delete,
   }) {
     return fetch?.call();
@@ -144,7 +144,7 @@ class _$Fetch implements Fetch {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetch,
     TResult Function(Task task)? add,
-    TResult Function(Task task)? edit,
+    TResult Function(Task task)? update,
     TResult Function(Task task)? delete,
     required TResult orElse(),
   }) {
@@ -159,7 +159,7 @@ class _$Fetch implements Fetch {
   TResult map<TResult extends Object?>({
     required TResult Function(Fetch value) fetch,
     required TResult Function(Add value) add,
-    required TResult Function(Edit value) edit,
+    required TResult Function(Update value) update,
     required TResult Function(Delete value) delete,
   }) {
     return fetch(this);
@@ -170,7 +170,7 @@ class _$Fetch implements Fetch {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Fetch value)? fetch,
     TResult? Function(Add value)? add,
-    TResult? Function(Edit value)? edit,
+    TResult? Function(Update value)? update,
     TResult? Function(Delete value)? delete,
   }) {
     return fetch?.call(this);
@@ -181,7 +181,7 @@ class _$Fetch implements Fetch {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Fetch value)? fetch,
     TResult Function(Add value)? add,
-    TResult Function(Edit value)? edit,
+    TResult Function(Update value)? update,
     TResult Function(Delete value)? delete,
     required TResult orElse(),
   }) {
@@ -269,7 +269,7 @@ class _$Add implements Add {
   TResult when<TResult extends Object?>({
     required TResult Function() fetch,
     required TResult Function(Task task) add,
-    required TResult Function(Task task) edit,
+    required TResult Function(Task task) update,
     required TResult Function(Task task) delete,
   }) {
     return add(task);
@@ -280,7 +280,7 @@ class _$Add implements Add {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? fetch,
     TResult? Function(Task task)? add,
-    TResult? Function(Task task)? edit,
+    TResult? Function(Task task)? update,
     TResult? Function(Task task)? delete,
   }) {
     return add?.call(task);
@@ -291,7 +291,7 @@ class _$Add implements Add {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetch,
     TResult Function(Task task)? add,
-    TResult Function(Task task)? edit,
+    TResult Function(Task task)? update,
     TResult Function(Task task)? delete,
     required TResult orElse(),
   }) {
@@ -306,7 +306,7 @@ class _$Add implements Add {
   TResult map<TResult extends Object?>({
     required TResult Function(Fetch value) fetch,
     required TResult Function(Add value) add,
-    required TResult Function(Edit value) edit,
+    required TResult Function(Update value) update,
     required TResult Function(Delete value) delete,
   }) {
     return add(this);
@@ -317,7 +317,7 @@ class _$Add implements Add {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Fetch value)? fetch,
     TResult? Function(Add value)? add,
-    TResult? Function(Edit value)? edit,
+    TResult? Function(Update value)? update,
     TResult? Function(Delete value)? delete,
   }) {
     return add?.call(this);
@@ -328,7 +328,7 @@ class _$Add implements Add {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Fetch value)? fetch,
     TResult Function(Add value)? add,
-    TResult Function(Edit value)? edit,
+    TResult Function(Update value)? update,
     TResult Function(Delete value)? delete,
     required TResult orElse(),
   }) {
@@ -348,9 +348,9 @@ abstract class Add implements TaskEvent {
 }
 
 /// @nodoc
-abstract class _$$EditCopyWith<$Res> {
-  factory _$$EditCopyWith(_$Edit value, $Res Function(_$Edit) then) =
-      __$$EditCopyWithImpl<$Res>;
+abstract class _$$UpdateCopyWith<$Res> {
+  factory _$$UpdateCopyWith(_$Update value, $Res Function(_$Update) then) =
+      __$$UpdateCopyWithImpl<$Res>;
   @useResult
   $Res call({Task task});
 
@@ -358,9 +358,10 @@ abstract class _$$EditCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$EditCopyWithImpl<$Res> extends _$TaskEventCopyWithImpl<$Res, _$Edit>
-    implements _$$EditCopyWith<$Res> {
-  __$$EditCopyWithImpl(_$Edit _value, $Res Function(_$Edit) _then)
+class __$$UpdateCopyWithImpl<$Res>
+    extends _$TaskEventCopyWithImpl<$Res, _$Update>
+    implements _$$UpdateCopyWith<$Res> {
+  __$$UpdateCopyWithImpl(_$Update _value, $Res Function(_$Update) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -368,7 +369,7 @@ class __$$EditCopyWithImpl<$Res> extends _$TaskEventCopyWithImpl<$Res, _$Edit>
   $Res call({
     Object? task = null,
   }) {
-    return _then(_$Edit(
+    return _then(_$Update(
       task: null == task
           ? _value.task
           : task // ignore: cast_nullable_to_non_nullable
@@ -387,22 +388,22 @@ class __$$EditCopyWithImpl<$Res> extends _$TaskEventCopyWithImpl<$Res, _$Edit>
 
 /// @nodoc
 
-class _$Edit implements Edit {
-  const _$Edit({required this.task});
+class _$Update implements Update {
+  const _$Update({required this.task});
 
   @override
   final Task task;
 
   @override
   String toString() {
-    return 'TaskEvent.edit(task: $task)';
+    return 'TaskEvent.update(task: $task)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$Edit &&
+            other is _$Update &&
             (identical(other.task, task) || other.task == task));
   }
 
@@ -412,18 +413,18 @@ class _$Edit implements Edit {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$EditCopyWith<_$Edit> get copyWith =>
-      __$$EditCopyWithImpl<_$Edit>(this, _$identity);
+  _$$UpdateCopyWith<_$Update> get copyWith =>
+      __$$UpdateCopyWithImpl<_$Update>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() fetch,
     required TResult Function(Task task) add,
-    required TResult Function(Task task) edit,
+    required TResult Function(Task task) update,
     required TResult Function(Task task) delete,
   }) {
-    return edit(task);
+    return update(task);
   }
 
   @override
@@ -431,10 +432,10 @@ class _$Edit implements Edit {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? fetch,
     TResult? Function(Task task)? add,
-    TResult? Function(Task task)? edit,
+    TResult? Function(Task task)? update,
     TResult? Function(Task task)? delete,
   }) {
-    return edit?.call(task);
+    return update?.call(task);
   }
 
   @override
@@ -442,12 +443,12 @@ class _$Edit implements Edit {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetch,
     TResult Function(Task task)? add,
-    TResult Function(Task task)? edit,
+    TResult Function(Task task)? update,
     TResult Function(Task task)? delete,
     required TResult orElse(),
   }) {
-    if (edit != null) {
-      return edit(task);
+    if (update != null) {
+      return update(task);
     }
     return orElse();
   }
@@ -457,10 +458,10 @@ class _$Edit implements Edit {
   TResult map<TResult extends Object?>({
     required TResult Function(Fetch value) fetch,
     required TResult Function(Add value) add,
-    required TResult Function(Edit value) edit,
+    required TResult Function(Update value) update,
     required TResult Function(Delete value) delete,
   }) {
-    return edit(this);
+    return update(this);
   }
 
   @override
@@ -468,10 +469,10 @@ class _$Edit implements Edit {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Fetch value)? fetch,
     TResult? Function(Add value)? add,
-    TResult? Function(Edit value)? edit,
+    TResult? Function(Update value)? update,
     TResult? Function(Delete value)? delete,
   }) {
-    return edit?.call(this);
+    return update?.call(this);
   }
 
   @override
@@ -479,23 +480,24 @@ class _$Edit implements Edit {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Fetch value)? fetch,
     TResult Function(Add value)? add,
-    TResult Function(Edit value)? edit,
+    TResult Function(Update value)? update,
     TResult Function(Delete value)? delete,
     required TResult orElse(),
   }) {
-    if (edit != null) {
-      return edit(this);
+    if (update != null) {
+      return update(this);
     }
     return orElse();
   }
 }
 
-abstract class Edit implements TaskEvent {
-  const factory Edit({required final Task task}) = _$Edit;
+abstract class Update implements TaskEvent {
+  const factory Update({required final Task task}) = _$Update;
 
   Task get task;
   @JsonKey(ignore: true)
-  _$$EditCopyWith<_$Edit> get copyWith => throw _privateConstructorUsedError;
+  _$$UpdateCopyWith<_$Update> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -572,7 +574,7 @@ class _$Delete implements Delete {
   TResult when<TResult extends Object?>({
     required TResult Function() fetch,
     required TResult Function(Task task) add,
-    required TResult Function(Task task) edit,
+    required TResult Function(Task task) update,
     required TResult Function(Task task) delete,
   }) {
     return delete(task);
@@ -583,7 +585,7 @@ class _$Delete implements Delete {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? fetch,
     TResult? Function(Task task)? add,
-    TResult? Function(Task task)? edit,
+    TResult? Function(Task task)? update,
     TResult? Function(Task task)? delete,
   }) {
     return delete?.call(task);
@@ -594,7 +596,7 @@ class _$Delete implements Delete {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetch,
     TResult Function(Task task)? add,
-    TResult Function(Task task)? edit,
+    TResult Function(Task task)? update,
     TResult Function(Task task)? delete,
     required TResult orElse(),
   }) {
@@ -609,7 +611,7 @@ class _$Delete implements Delete {
   TResult map<TResult extends Object?>({
     required TResult Function(Fetch value) fetch,
     required TResult Function(Add value) add,
-    required TResult Function(Edit value) edit,
+    required TResult Function(Update value) update,
     required TResult Function(Delete value) delete,
   }) {
     return delete(this);
@@ -620,7 +622,7 @@ class _$Delete implements Delete {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Fetch value)? fetch,
     TResult? Function(Add value)? add,
-    TResult? Function(Edit value)? edit,
+    TResult? Function(Update value)? update,
     TResult? Function(Delete value)? delete,
   }) {
     return delete?.call(this);
@@ -631,7 +633,7 @@ class _$Delete implements Delete {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Fetch value)? fetch,
     TResult Function(Add value)? add,
-    TResult Function(Edit value)? edit,
+    TResult Function(Update value)? update,
     TResult Function(Delete value)? delete,
     required TResult orElse(),
   }) {
