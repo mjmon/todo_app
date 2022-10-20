@@ -22,7 +22,8 @@ class DatabaseConfig {
     _database = db;
     _taskStore = taskStore;
   }
-
+  /// database client
   Database? get database => _database;
+  /// Store reference for all tasks
   StoreRef? get taskStore => _taskStore;
 }
