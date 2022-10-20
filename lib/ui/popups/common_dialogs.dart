@@ -39,7 +39,7 @@ Future<int?> showPrioritySelectPopup(BuildContext context,
   return result;
 }
 
-/// [currentSort] is the current priority value of the task prior to updating it
+/// [currentSort] is the current sort value of the task prior to updating it
 Future<String?> showSortSelectPopup(BuildContext context,
     {required String currentSort}) async {
   final result = await showConfirmationDialog(
