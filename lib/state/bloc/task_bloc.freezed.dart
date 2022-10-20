@@ -18,51 +18,63 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$TaskEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<Task> taskList) fetch,
+    required TResult Function() fetch,
     required TResult Function(Task task) add,
-    required TResult Function(Task task) edit,
+    required TResult Function(Task task) update,
     required TResult Function(Task task) delete,
+    required TResult Function(String mode) changeDisplayMode,
+    required TResult Function(String sortby) changeSortby,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<Task> taskList)? fetch,
+    TResult? Function()? fetch,
     TResult? Function(Task task)? add,
-    TResult? Function(Task task)? edit,
+    TResult? Function(Task task)? update,
     TResult? Function(Task task)? delete,
+    TResult? Function(String mode)? changeDisplayMode,
+    TResult? Function(String sortby)? changeSortby,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<Task> taskList)? fetch,
+    TResult Function()? fetch,
     TResult Function(Task task)? add,
-    TResult Function(Task task)? edit,
+    TResult Function(Task task)? update,
     TResult Function(Task task)? delete,
+    TResult Function(String mode)? changeDisplayMode,
+    TResult Function(String sortby)? changeSortby,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Fetch value) fetch,
-    required TResult Function(_Add value) add,
-    required TResult Function(_Edit value) edit,
-    required TResult Function(_Delete value) delete,
+    required TResult Function(Fetch value) fetch,
+    required TResult Function(Add value) add,
+    required TResult Function(Update value) update,
+    required TResult Function(Delete value) delete,
+    required TResult Function(ChangeDisplayMode value) changeDisplayMode,
+    required TResult Function(ChangeSortby value) changeSortby,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Fetch value)? fetch,
-    TResult? Function(_Add value)? add,
-    TResult? Function(_Edit value)? edit,
-    TResult? Function(_Delete value)? delete,
+    TResult? Function(Fetch value)? fetch,
+    TResult? Function(Add value)? add,
+    TResult? Function(Update value)? update,
+    TResult? Function(Delete value)? delete,
+    TResult? Function(ChangeDisplayMode value)? changeDisplayMode,
+    TResult? Function(ChangeSortby value)? changeSortby,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Fetch value)? fetch,
-    TResult Function(_Add value)? add,
-    TResult Function(_Edit value)? edit,
-    TResult Function(_Delete value)? delete,
+    TResult Function(Fetch value)? fetch,
+    TResult Function(Add value)? add,
+    TResult Function(Update value)? update,
+    TResult Function(Delete value)? delete,
+    TResult Function(ChangeDisplayMode value)? changeDisplayMode,
+    TResult Function(ChangeSortby value)? changeSortby,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -86,102 +98,76 @@ class _$TaskEventCopyWithImpl<$Res, $Val extends TaskEvent>
 }
 
 /// @nodoc
-abstract class _$$_FetchCopyWith<$Res> {
-  factory _$$_FetchCopyWith(_$_Fetch value, $Res Function(_$_Fetch) then) =
-      __$$_FetchCopyWithImpl<$Res>;
-  @useResult
-  $Res call({List<Task> taskList});
+abstract class _$$FetchCopyWith<$Res> {
+  factory _$$FetchCopyWith(_$Fetch value, $Res Function(_$Fetch) then) =
+      __$$FetchCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_FetchCopyWithImpl<$Res>
-    extends _$TaskEventCopyWithImpl<$Res, _$_Fetch>
-    implements _$$_FetchCopyWith<$Res> {
-  __$$_FetchCopyWithImpl(_$_Fetch _value, $Res Function(_$_Fetch) _then)
+class __$$FetchCopyWithImpl<$Res> extends _$TaskEventCopyWithImpl<$Res, _$Fetch>
+    implements _$$FetchCopyWith<$Res> {
+  __$$FetchCopyWithImpl(_$Fetch _value, $Res Function(_$Fetch) _then)
       : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? taskList = null,
-  }) {
-    return _then(_$_Fetch(
-      taskList: null == taskList
-          ? _value._taskList
-          : taskList // ignore: cast_nullable_to_non_nullable
-              as List<Task>,
-    ));
-  }
 }
 
 /// @nodoc
 
-class _$_Fetch implements _Fetch {
-  const _$_Fetch({required final List<Task> taskList}) : _taskList = taskList;
-
-  final List<Task> _taskList;
-  @override
-  List<Task> get taskList {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_taskList);
-  }
+class _$Fetch implements Fetch {
+  const _$Fetch();
 
   @override
   String toString() {
-    return 'TaskEvent.fetch(taskList: $taskList)';
+    return 'TaskEvent.fetch()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_Fetch &&
-            const DeepCollectionEquality().equals(other._taskList, _taskList));
+        (other.runtimeType == runtimeType && other is _$Fetch);
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_taskList));
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_FetchCopyWith<_$_Fetch> get copyWith =>
-      __$$_FetchCopyWithImpl<_$_Fetch>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<Task> taskList) fetch,
+    required TResult Function() fetch,
     required TResult Function(Task task) add,
-    required TResult Function(Task task) edit,
+    required TResult Function(Task task) update,
     required TResult Function(Task task) delete,
+    required TResult Function(String mode) changeDisplayMode,
+    required TResult Function(String sortby) changeSortby,
   }) {
-    return fetch(taskList);
+    return fetch();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<Task> taskList)? fetch,
+    TResult? Function()? fetch,
     TResult? Function(Task task)? add,
-    TResult? Function(Task task)? edit,
+    TResult? Function(Task task)? update,
     TResult? Function(Task task)? delete,
+    TResult? Function(String mode)? changeDisplayMode,
+    TResult? Function(String sortby)? changeSortby,
   }) {
-    return fetch?.call(taskList);
+    return fetch?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<Task> taskList)? fetch,
+    TResult Function()? fetch,
     TResult Function(Task task)? add,
-    TResult Function(Task task)? edit,
+    TResult Function(Task task)? update,
     TResult Function(Task task)? delete,
+    TResult Function(String mode)? changeDisplayMode,
+    TResult Function(String sortby)? changeSortby,
     required TResult orElse(),
   }) {
     if (fetch != null) {
-      return fetch(taskList);
+      return fetch();
     }
     return orElse();
   }
@@ -189,10 +175,12 @@ class _$_Fetch implements _Fetch {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Fetch value) fetch,
-    required TResult Function(_Add value) add,
-    required TResult Function(_Edit value) edit,
-    required TResult Function(_Delete value) delete,
+    required TResult Function(Fetch value) fetch,
+    required TResult Function(Add value) add,
+    required TResult Function(Update value) update,
+    required TResult Function(Delete value) delete,
+    required TResult Function(ChangeDisplayMode value) changeDisplayMode,
+    required TResult Function(ChangeSortby value) changeSortby,
   }) {
     return fetch(this);
   }
@@ -200,10 +188,12 @@ class _$_Fetch implements _Fetch {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Fetch value)? fetch,
-    TResult? Function(_Add value)? add,
-    TResult? Function(_Edit value)? edit,
-    TResult? Function(_Delete value)? delete,
+    TResult? Function(Fetch value)? fetch,
+    TResult? Function(Add value)? add,
+    TResult? Function(Update value)? update,
+    TResult? Function(Delete value)? delete,
+    TResult? Function(ChangeDisplayMode value)? changeDisplayMode,
+    TResult? Function(ChangeSortby value)? changeSortby,
   }) {
     return fetch?.call(this);
   }
@@ -211,10 +201,12 @@ class _$_Fetch implements _Fetch {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Fetch value)? fetch,
-    TResult Function(_Add value)? add,
-    TResult Function(_Edit value)? edit,
-    TResult Function(_Delete value)? delete,
+    TResult Function(Fetch value)? fetch,
+    TResult Function(Add value)? add,
+    TResult Function(Update value)? update,
+    TResult Function(Delete value)? delete,
+    TResult Function(ChangeDisplayMode value)? changeDisplayMode,
+    TResult Function(ChangeSortby value)? changeSortby,
     required TResult orElse(),
   }) {
     if (fetch != null) {
@@ -224,19 +216,14 @@ class _$_Fetch implements _Fetch {
   }
 }
 
-abstract class _Fetch implements TaskEvent {
-  const factory _Fetch({required final List<Task> taskList}) = _$_Fetch;
-
-  List<Task> get taskList;
-  @JsonKey(ignore: true)
-  _$$_FetchCopyWith<_$_Fetch> get copyWith =>
-      throw _privateConstructorUsedError;
+abstract class Fetch implements TaskEvent {
+  const factory Fetch() = _$Fetch;
 }
 
 /// @nodoc
-abstract class _$$_AddCopyWith<$Res> {
-  factory _$$_AddCopyWith(_$_Add value, $Res Function(_$_Add) then) =
-      __$$_AddCopyWithImpl<$Res>;
+abstract class _$$AddCopyWith<$Res> {
+  factory _$$AddCopyWith(_$Add value, $Res Function(_$Add) then) =
+      __$$AddCopyWithImpl<$Res>;
   @useResult
   $Res call({Task task});
 
@@ -244,9 +231,9 @@ abstract class _$$_AddCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_AddCopyWithImpl<$Res> extends _$TaskEventCopyWithImpl<$Res, _$_Add>
-    implements _$$_AddCopyWith<$Res> {
-  __$$_AddCopyWithImpl(_$_Add _value, $Res Function(_$_Add) _then)
+class __$$AddCopyWithImpl<$Res> extends _$TaskEventCopyWithImpl<$Res, _$Add>
+    implements _$$AddCopyWith<$Res> {
+  __$$AddCopyWithImpl(_$Add _value, $Res Function(_$Add) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -254,7 +241,7 @@ class __$$_AddCopyWithImpl<$Res> extends _$TaskEventCopyWithImpl<$Res, _$_Add>
   $Res call({
     Object? task = null,
   }) {
-    return _then(_$_Add(
+    return _then(_$Add(
       task: null == task
           ? _value.task
           : task // ignore: cast_nullable_to_non_nullable
@@ -273,8 +260,8 @@ class __$$_AddCopyWithImpl<$Res> extends _$TaskEventCopyWithImpl<$Res, _$_Add>
 
 /// @nodoc
 
-class _$_Add implements _Add {
-  const _$_Add({required this.task});
+class _$Add implements Add {
+  const _$Add({required this.task});
 
   @override
   final Task task;
@@ -288,7 +275,7 @@ class _$_Add implements _Add {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Add &&
+            other is _$Add &&
             (identical(other.task, task) || other.task == task));
   }
 
@@ -298,16 +285,18 @@ class _$_Add implements _Add {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_AddCopyWith<_$_Add> get copyWith =>
-      __$$_AddCopyWithImpl<_$_Add>(this, _$identity);
+  _$$AddCopyWith<_$Add> get copyWith =>
+      __$$AddCopyWithImpl<_$Add>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<Task> taskList) fetch,
+    required TResult Function() fetch,
     required TResult Function(Task task) add,
-    required TResult Function(Task task) edit,
+    required TResult Function(Task task) update,
     required TResult Function(Task task) delete,
+    required TResult Function(String mode) changeDisplayMode,
+    required TResult Function(String sortby) changeSortby,
   }) {
     return add(task);
   }
@@ -315,10 +304,12 @@ class _$_Add implements _Add {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<Task> taskList)? fetch,
+    TResult? Function()? fetch,
     TResult? Function(Task task)? add,
-    TResult? Function(Task task)? edit,
+    TResult? Function(Task task)? update,
     TResult? Function(Task task)? delete,
+    TResult? Function(String mode)? changeDisplayMode,
+    TResult? Function(String sortby)? changeSortby,
   }) {
     return add?.call(task);
   }
@@ -326,10 +317,12 @@ class _$_Add implements _Add {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<Task> taskList)? fetch,
+    TResult Function()? fetch,
     TResult Function(Task task)? add,
-    TResult Function(Task task)? edit,
+    TResult Function(Task task)? update,
     TResult Function(Task task)? delete,
+    TResult Function(String mode)? changeDisplayMode,
+    TResult Function(String sortby)? changeSortby,
     required TResult orElse(),
   }) {
     if (add != null) {
@@ -341,10 +334,12 @@ class _$_Add implements _Add {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Fetch value) fetch,
-    required TResult Function(_Add value) add,
-    required TResult Function(_Edit value) edit,
-    required TResult Function(_Delete value) delete,
+    required TResult Function(Fetch value) fetch,
+    required TResult Function(Add value) add,
+    required TResult Function(Update value) update,
+    required TResult Function(Delete value) delete,
+    required TResult Function(ChangeDisplayMode value) changeDisplayMode,
+    required TResult Function(ChangeSortby value) changeSortby,
   }) {
     return add(this);
   }
@@ -352,10 +347,12 @@ class _$_Add implements _Add {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Fetch value)? fetch,
-    TResult? Function(_Add value)? add,
-    TResult? Function(_Edit value)? edit,
-    TResult? Function(_Delete value)? delete,
+    TResult? Function(Fetch value)? fetch,
+    TResult? Function(Add value)? add,
+    TResult? Function(Update value)? update,
+    TResult? Function(Delete value)? delete,
+    TResult? Function(ChangeDisplayMode value)? changeDisplayMode,
+    TResult? Function(ChangeSortby value)? changeSortby,
   }) {
     return add?.call(this);
   }
@@ -363,10 +360,12 @@ class _$_Add implements _Add {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Fetch value)? fetch,
-    TResult Function(_Add value)? add,
-    TResult Function(_Edit value)? edit,
-    TResult Function(_Delete value)? delete,
+    TResult Function(Fetch value)? fetch,
+    TResult Function(Add value)? add,
+    TResult Function(Update value)? update,
+    TResult Function(Delete value)? delete,
+    TResult Function(ChangeDisplayMode value)? changeDisplayMode,
+    TResult Function(ChangeSortby value)? changeSortby,
     required TResult orElse(),
   }) {
     if (add != null) {
@@ -376,18 +375,18 @@ class _$_Add implements _Add {
   }
 }
 
-abstract class _Add implements TaskEvent {
-  const factory _Add({required final Task task}) = _$_Add;
+abstract class Add implements TaskEvent {
+  const factory Add({required final Task task}) = _$Add;
 
   Task get task;
   @JsonKey(ignore: true)
-  _$$_AddCopyWith<_$_Add> get copyWith => throw _privateConstructorUsedError;
+  _$$AddCopyWith<_$Add> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_EditCopyWith<$Res> {
-  factory _$$_EditCopyWith(_$_Edit value, $Res Function(_$_Edit) then) =
-      __$$_EditCopyWithImpl<$Res>;
+abstract class _$$UpdateCopyWith<$Res> {
+  factory _$$UpdateCopyWith(_$Update value, $Res Function(_$Update) then) =
+      __$$UpdateCopyWithImpl<$Res>;
   @useResult
   $Res call({Task task});
 
@@ -395,9 +394,10 @@ abstract class _$$_EditCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_EditCopyWithImpl<$Res> extends _$TaskEventCopyWithImpl<$Res, _$_Edit>
-    implements _$$_EditCopyWith<$Res> {
-  __$$_EditCopyWithImpl(_$_Edit _value, $Res Function(_$_Edit) _then)
+class __$$UpdateCopyWithImpl<$Res>
+    extends _$TaskEventCopyWithImpl<$Res, _$Update>
+    implements _$$UpdateCopyWith<$Res> {
+  __$$UpdateCopyWithImpl(_$Update _value, $Res Function(_$Update) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -405,7 +405,7 @@ class __$$_EditCopyWithImpl<$Res> extends _$TaskEventCopyWithImpl<$Res, _$_Edit>
   $Res call({
     Object? task = null,
   }) {
-    return _then(_$_Edit(
+    return _then(_$Update(
       task: null == task
           ? _value.task
           : task // ignore: cast_nullable_to_non_nullable
@@ -424,22 +424,22 @@ class __$$_EditCopyWithImpl<$Res> extends _$TaskEventCopyWithImpl<$Res, _$_Edit>
 
 /// @nodoc
 
-class _$_Edit implements _Edit {
-  const _$_Edit({required this.task});
+class _$Update implements Update {
+  const _$Update({required this.task});
 
   @override
   final Task task;
 
   @override
   String toString() {
-    return 'TaskEvent.edit(task: $task)';
+    return 'TaskEvent.update(task: $task)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Edit &&
+            other is _$Update &&
             (identical(other.task, task) || other.task == task));
   }
 
@@ -449,42 +449,48 @@ class _$_Edit implements _Edit {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_EditCopyWith<_$_Edit> get copyWith =>
-      __$$_EditCopyWithImpl<_$_Edit>(this, _$identity);
+  _$$UpdateCopyWith<_$Update> get copyWith =>
+      __$$UpdateCopyWithImpl<_$Update>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<Task> taskList) fetch,
+    required TResult Function() fetch,
     required TResult Function(Task task) add,
-    required TResult Function(Task task) edit,
+    required TResult Function(Task task) update,
     required TResult Function(Task task) delete,
+    required TResult Function(String mode) changeDisplayMode,
+    required TResult Function(String sortby) changeSortby,
   }) {
-    return edit(task);
+    return update(task);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<Task> taskList)? fetch,
+    TResult? Function()? fetch,
     TResult? Function(Task task)? add,
-    TResult? Function(Task task)? edit,
+    TResult? Function(Task task)? update,
     TResult? Function(Task task)? delete,
+    TResult? Function(String mode)? changeDisplayMode,
+    TResult? Function(String sortby)? changeSortby,
   }) {
-    return edit?.call(task);
+    return update?.call(task);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<Task> taskList)? fetch,
+    TResult Function()? fetch,
     TResult Function(Task task)? add,
-    TResult Function(Task task)? edit,
+    TResult Function(Task task)? update,
     TResult Function(Task task)? delete,
+    TResult Function(String mode)? changeDisplayMode,
+    TResult Function(String sortby)? changeSortby,
     required TResult orElse(),
   }) {
-    if (edit != null) {
-      return edit(task);
+    if (update != null) {
+      return update(task);
     }
     return orElse();
   }
@@ -492,53 +498,60 @@ class _$_Edit implements _Edit {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Fetch value) fetch,
-    required TResult Function(_Add value) add,
-    required TResult Function(_Edit value) edit,
-    required TResult Function(_Delete value) delete,
+    required TResult Function(Fetch value) fetch,
+    required TResult Function(Add value) add,
+    required TResult Function(Update value) update,
+    required TResult Function(Delete value) delete,
+    required TResult Function(ChangeDisplayMode value) changeDisplayMode,
+    required TResult Function(ChangeSortby value) changeSortby,
   }) {
-    return edit(this);
+    return update(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Fetch value)? fetch,
-    TResult? Function(_Add value)? add,
-    TResult? Function(_Edit value)? edit,
-    TResult? Function(_Delete value)? delete,
+    TResult? Function(Fetch value)? fetch,
+    TResult? Function(Add value)? add,
+    TResult? Function(Update value)? update,
+    TResult? Function(Delete value)? delete,
+    TResult? Function(ChangeDisplayMode value)? changeDisplayMode,
+    TResult? Function(ChangeSortby value)? changeSortby,
   }) {
-    return edit?.call(this);
+    return update?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Fetch value)? fetch,
-    TResult Function(_Add value)? add,
-    TResult Function(_Edit value)? edit,
-    TResult Function(_Delete value)? delete,
+    TResult Function(Fetch value)? fetch,
+    TResult Function(Add value)? add,
+    TResult Function(Update value)? update,
+    TResult Function(Delete value)? delete,
+    TResult Function(ChangeDisplayMode value)? changeDisplayMode,
+    TResult Function(ChangeSortby value)? changeSortby,
     required TResult orElse(),
   }) {
-    if (edit != null) {
-      return edit(this);
+    if (update != null) {
+      return update(this);
     }
     return orElse();
   }
 }
 
-abstract class _Edit implements TaskEvent {
-  const factory _Edit({required final Task task}) = _$_Edit;
+abstract class Update implements TaskEvent {
+  const factory Update({required final Task task}) = _$Update;
 
   Task get task;
   @JsonKey(ignore: true)
-  _$$_EditCopyWith<_$_Edit> get copyWith => throw _privateConstructorUsedError;
+  _$$UpdateCopyWith<_$Update> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_DeleteCopyWith<$Res> {
-  factory _$$_DeleteCopyWith(_$_Delete value, $Res Function(_$_Delete) then) =
-      __$$_DeleteCopyWithImpl<$Res>;
+abstract class _$$DeleteCopyWith<$Res> {
+  factory _$$DeleteCopyWith(_$Delete value, $Res Function(_$Delete) then) =
+      __$$DeleteCopyWithImpl<$Res>;
   @useResult
   $Res call({Task task});
 
@@ -546,10 +559,10 @@ abstract class _$$_DeleteCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_DeleteCopyWithImpl<$Res>
-    extends _$TaskEventCopyWithImpl<$Res, _$_Delete>
-    implements _$$_DeleteCopyWith<$Res> {
-  __$$_DeleteCopyWithImpl(_$_Delete _value, $Res Function(_$_Delete) _then)
+class __$$DeleteCopyWithImpl<$Res>
+    extends _$TaskEventCopyWithImpl<$Res, _$Delete>
+    implements _$$DeleteCopyWith<$Res> {
+  __$$DeleteCopyWithImpl(_$Delete _value, $Res Function(_$Delete) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -557,7 +570,7 @@ class __$$_DeleteCopyWithImpl<$Res>
   $Res call({
     Object? task = null,
   }) {
-    return _then(_$_Delete(
+    return _then(_$Delete(
       task: null == task
           ? _value.task
           : task // ignore: cast_nullable_to_non_nullable
@@ -576,8 +589,8 @@ class __$$_DeleteCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Delete implements _Delete {
-  const _$_Delete({required this.task});
+class _$Delete implements Delete {
+  const _$Delete({required this.task});
 
   @override
   final Task task;
@@ -591,7 +604,7 @@ class _$_Delete implements _Delete {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Delete &&
+            other is _$Delete &&
             (identical(other.task, task) || other.task == task));
   }
 
@@ -601,16 +614,18 @@ class _$_Delete implements _Delete {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_DeleteCopyWith<_$_Delete> get copyWith =>
-      __$$_DeleteCopyWithImpl<_$_Delete>(this, _$identity);
+  _$$DeleteCopyWith<_$Delete> get copyWith =>
+      __$$DeleteCopyWithImpl<_$Delete>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<Task> taskList) fetch,
+    required TResult Function() fetch,
     required TResult Function(Task task) add,
-    required TResult Function(Task task) edit,
+    required TResult Function(Task task) update,
     required TResult Function(Task task) delete,
+    required TResult Function(String mode) changeDisplayMode,
+    required TResult Function(String sortby) changeSortby,
   }) {
     return delete(task);
   }
@@ -618,10 +633,12 @@ class _$_Delete implements _Delete {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<Task> taskList)? fetch,
+    TResult? Function()? fetch,
     TResult? Function(Task task)? add,
-    TResult? Function(Task task)? edit,
+    TResult? Function(Task task)? update,
     TResult? Function(Task task)? delete,
+    TResult? Function(String mode)? changeDisplayMode,
+    TResult? Function(String sortby)? changeSortby,
   }) {
     return delete?.call(task);
   }
@@ -629,10 +646,12 @@ class _$_Delete implements _Delete {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<Task> taskList)? fetch,
+    TResult Function()? fetch,
     TResult Function(Task task)? add,
-    TResult Function(Task task)? edit,
+    TResult Function(Task task)? update,
     TResult Function(Task task)? delete,
+    TResult Function(String mode)? changeDisplayMode,
+    TResult Function(String sortby)? changeSortby,
     required TResult orElse(),
   }) {
     if (delete != null) {
@@ -644,10 +663,12 @@ class _$_Delete implements _Delete {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Fetch value) fetch,
-    required TResult Function(_Add value) add,
-    required TResult Function(_Edit value) edit,
-    required TResult Function(_Delete value) delete,
+    required TResult Function(Fetch value) fetch,
+    required TResult Function(Add value) add,
+    required TResult Function(Update value) update,
+    required TResult Function(Delete value) delete,
+    required TResult Function(ChangeDisplayMode value) changeDisplayMode,
+    required TResult Function(ChangeSortby value) changeSortby,
   }) {
     return delete(this);
   }
@@ -655,10 +676,12 @@ class _$_Delete implements _Delete {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Fetch value)? fetch,
-    TResult? Function(_Add value)? add,
-    TResult? Function(_Edit value)? edit,
-    TResult? Function(_Delete value)? delete,
+    TResult? Function(Fetch value)? fetch,
+    TResult? Function(Add value)? add,
+    TResult? Function(Update value)? update,
+    TResult? Function(Delete value)? delete,
+    TResult? Function(ChangeDisplayMode value)? changeDisplayMode,
+    TResult? Function(ChangeSortby value)? changeSortby,
   }) {
     return delete?.call(this);
   }
@@ -666,10 +689,12 @@ class _$_Delete implements _Delete {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Fetch value)? fetch,
-    TResult Function(_Add value)? add,
-    TResult Function(_Edit value)? edit,
-    TResult Function(_Delete value)? delete,
+    TResult Function(Fetch value)? fetch,
+    TResult Function(Add value)? add,
+    TResult Function(Update value)? update,
+    TResult Function(Delete value)? delete,
+    TResult Function(ChangeDisplayMode value)? changeDisplayMode,
+    TResult Function(ChangeSortby value)? changeSortby,
     required TResult orElse(),
   }) {
     if (delete != null) {
@@ -679,23 +704,340 @@ class _$_Delete implements _Delete {
   }
 }
 
-abstract class _Delete implements TaskEvent {
-  const factory _Delete({required final Task task}) = _$_Delete;
+abstract class Delete implements TaskEvent {
+  const factory Delete({required final Task task}) = _$Delete;
 
   Task get task;
   @JsonKey(ignore: true)
-  _$$_DeleteCopyWith<_$_Delete> get copyWith =>
+  _$$DeleteCopyWith<_$Delete> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ChangeDisplayModeCopyWith<$Res> {
+  factory _$$ChangeDisplayModeCopyWith(
+          _$ChangeDisplayMode value, $Res Function(_$ChangeDisplayMode) then) =
+      __$$ChangeDisplayModeCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String mode});
+}
+
+/// @nodoc
+class __$$ChangeDisplayModeCopyWithImpl<$Res>
+    extends _$TaskEventCopyWithImpl<$Res, _$ChangeDisplayMode>
+    implements _$$ChangeDisplayModeCopyWith<$Res> {
+  __$$ChangeDisplayModeCopyWithImpl(
+      _$ChangeDisplayMode _value, $Res Function(_$ChangeDisplayMode) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? mode = null,
+  }) {
+    return _then(_$ChangeDisplayMode(
+      mode: null == mode
+          ? _value.mode
+          : mode // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ChangeDisplayMode implements ChangeDisplayMode {
+  const _$ChangeDisplayMode({required this.mode});
+
+  @override
+  final String mode;
+
+  @override
+  String toString() {
+    return 'TaskEvent.changeDisplayMode(mode: $mode)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ChangeDisplayMode &&
+            (identical(other.mode, mode) || other.mode == mode));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, mode);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ChangeDisplayModeCopyWith<_$ChangeDisplayMode> get copyWith =>
+      __$$ChangeDisplayModeCopyWithImpl<_$ChangeDisplayMode>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() fetch,
+    required TResult Function(Task task) add,
+    required TResult Function(Task task) update,
+    required TResult Function(Task task) delete,
+    required TResult Function(String mode) changeDisplayMode,
+    required TResult Function(String sortby) changeSortby,
+  }) {
+    return changeDisplayMode(mode);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? fetch,
+    TResult? Function(Task task)? add,
+    TResult? Function(Task task)? update,
+    TResult? Function(Task task)? delete,
+    TResult? Function(String mode)? changeDisplayMode,
+    TResult? Function(String sortby)? changeSortby,
+  }) {
+    return changeDisplayMode?.call(mode);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? fetch,
+    TResult Function(Task task)? add,
+    TResult Function(Task task)? update,
+    TResult Function(Task task)? delete,
+    TResult Function(String mode)? changeDisplayMode,
+    TResult Function(String sortby)? changeSortby,
+    required TResult orElse(),
+  }) {
+    if (changeDisplayMode != null) {
+      return changeDisplayMode(mode);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Fetch value) fetch,
+    required TResult Function(Add value) add,
+    required TResult Function(Update value) update,
+    required TResult Function(Delete value) delete,
+    required TResult Function(ChangeDisplayMode value) changeDisplayMode,
+    required TResult Function(ChangeSortby value) changeSortby,
+  }) {
+    return changeDisplayMode(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(Fetch value)? fetch,
+    TResult? Function(Add value)? add,
+    TResult? Function(Update value)? update,
+    TResult? Function(Delete value)? delete,
+    TResult? Function(ChangeDisplayMode value)? changeDisplayMode,
+    TResult? Function(ChangeSortby value)? changeSortby,
+  }) {
+    return changeDisplayMode?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Fetch value)? fetch,
+    TResult Function(Add value)? add,
+    TResult Function(Update value)? update,
+    TResult Function(Delete value)? delete,
+    TResult Function(ChangeDisplayMode value)? changeDisplayMode,
+    TResult Function(ChangeSortby value)? changeSortby,
+    required TResult orElse(),
+  }) {
+    if (changeDisplayMode != null) {
+      return changeDisplayMode(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ChangeDisplayMode implements TaskEvent {
+  const factory ChangeDisplayMode({required final String mode}) =
+      _$ChangeDisplayMode;
+
+  String get mode;
+  @JsonKey(ignore: true)
+  _$$ChangeDisplayModeCopyWith<_$ChangeDisplayMode> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ChangeSortbyCopyWith<$Res> {
+  factory _$$ChangeSortbyCopyWith(
+          _$ChangeSortby value, $Res Function(_$ChangeSortby) then) =
+      __$$ChangeSortbyCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String sortby});
+}
+
+/// @nodoc
+class __$$ChangeSortbyCopyWithImpl<$Res>
+    extends _$TaskEventCopyWithImpl<$Res, _$ChangeSortby>
+    implements _$$ChangeSortbyCopyWith<$Res> {
+  __$$ChangeSortbyCopyWithImpl(
+      _$ChangeSortby _value, $Res Function(_$ChangeSortby) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? sortby = null,
+  }) {
+    return _then(_$ChangeSortby(
+      sortby: null == sortby
+          ? _value.sortby
+          : sortby // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ChangeSortby implements ChangeSortby {
+  const _$ChangeSortby({required this.sortby});
+
+  @override
+  final String sortby;
+
+  @override
+  String toString() {
+    return 'TaskEvent.changeSortby(sortby: $sortby)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ChangeSortby &&
+            (identical(other.sortby, sortby) || other.sortby == sortby));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, sortby);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ChangeSortbyCopyWith<_$ChangeSortby> get copyWith =>
+      __$$ChangeSortbyCopyWithImpl<_$ChangeSortby>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() fetch,
+    required TResult Function(Task task) add,
+    required TResult Function(Task task) update,
+    required TResult Function(Task task) delete,
+    required TResult Function(String mode) changeDisplayMode,
+    required TResult Function(String sortby) changeSortby,
+  }) {
+    return changeSortby(sortby);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? fetch,
+    TResult? Function(Task task)? add,
+    TResult? Function(Task task)? update,
+    TResult? Function(Task task)? delete,
+    TResult? Function(String mode)? changeDisplayMode,
+    TResult? Function(String sortby)? changeSortby,
+  }) {
+    return changeSortby?.call(sortby);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? fetch,
+    TResult Function(Task task)? add,
+    TResult Function(Task task)? update,
+    TResult Function(Task task)? delete,
+    TResult Function(String mode)? changeDisplayMode,
+    TResult Function(String sortby)? changeSortby,
+    required TResult orElse(),
+  }) {
+    if (changeSortby != null) {
+      return changeSortby(sortby);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Fetch value) fetch,
+    required TResult Function(Add value) add,
+    required TResult Function(Update value) update,
+    required TResult Function(Delete value) delete,
+    required TResult Function(ChangeDisplayMode value) changeDisplayMode,
+    required TResult Function(ChangeSortby value) changeSortby,
+  }) {
+    return changeSortby(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(Fetch value)? fetch,
+    TResult? Function(Add value)? add,
+    TResult? Function(Update value)? update,
+    TResult? Function(Delete value)? delete,
+    TResult? Function(ChangeDisplayMode value)? changeDisplayMode,
+    TResult? Function(ChangeSortby value)? changeSortby,
+  }) {
+    return changeSortby?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Fetch value)? fetch,
+    TResult Function(Add value)? add,
+    TResult Function(Update value)? update,
+    TResult Function(Delete value)? delete,
+    TResult Function(ChangeDisplayMode value)? changeDisplayMode,
+    TResult Function(ChangeSortby value)? changeSortby,
+    required TResult orElse(),
+  }) {
+    if (changeSortby != null) {
+      return changeSortby(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ChangeSortby implements TaskEvent {
+  const factory ChangeSortby({required final String sortby}) = _$ChangeSortby;
+
+  String get sortby;
+  @JsonKey(ignore: true)
+  _$$ChangeSortbyCopyWith<_$ChangeSortby> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 mixin _$TaskState {
-  List<Task> get taskList => throw _privateConstructorUsedError;
+  List<Task> get allTaskList => throw _privateConstructorUsedError;
   List<Task> get activeTaskList => throw _privateConstructorUsedError;
   List<Task> get completedTaskList => throw _privateConstructorUsedError;
+  String get displayMode => throw _privateConstructorUsedError;
+  String get sortBy => throw _privateConstructorUsedError;
   bool get isBusy => throw _privateConstructorUsedError;
-  String get errorMessage => throw _privateConstructorUsedError;
-  String get successMessage => throw _privateConstructorUsedError;
+  String? get errorMessage => throw _privateConstructorUsedError;
+  String? get successMessage => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $TaskStateCopyWith<TaskState> get copyWith =>
@@ -708,12 +1050,14 @@ abstract class $TaskStateCopyWith<$Res> {
       _$TaskStateCopyWithImpl<$Res, TaskState>;
   @useResult
   $Res call(
-      {List<Task> taskList,
+      {List<Task> allTaskList,
       List<Task> activeTaskList,
       List<Task> completedTaskList,
+      String displayMode,
+      String sortBy,
       bool isBusy,
-      String errorMessage,
-      String successMessage});
+      String? errorMessage,
+      String? successMessage});
 }
 
 /// @nodoc
@@ -729,17 +1073,19 @@ class _$TaskStateCopyWithImpl<$Res, $Val extends TaskState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? taskList = null,
+    Object? allTaskList = null,
     Object? activeTaskList = null,
     Object? completedTaskList = null,
+    Object? displayMode = null,
+    Object? sortBy = null,
     Object? isBusy = null,
-    Object? errorMessage = null,
-    Object? successMessage = null,
+    Object? errorMessage = freezed,
+    Object? successMessage = freezed,
   }) {
     return _then(_value.copyWith(
-      taskList: null == taskList
-          ? _value.taskList
-          : taskList // ignore: cast_nullable_to_non_nullable
+      allTaskList: null == allTaskList
+          ? _value.allTaskList
+          : allTaskList // ignore: cast_nullable_to_non_nullable
               as List<Task>,
       activeTaskList: null == activeTaskList
           ? _value.activeTaskList
@@ -749,18 +1095,26 @@ class _$TaskStateCopyWithImpl<$Res, $Val extends TaskState>
           ? _value.completedTaskList
           : completedTaskList // ignore: cast_nullable_to_non_nullable
               as List<Task>,
+      displayMode: null == displayMode
+          ? _value.displayMode
+          : displayMode // ignore: cast_nullable_to_non_nullable
+              as String,
+      sortBy: null == sortBy
+          ? _value.sortBy
+          : sortBy // ignore: cast_nullable_to_non_nullable
+              as String,
       isBusy: null == isBusy
           ? _value.isBusy
           : isBusy // ignore: cast_nullable_to_non_nullable
               as bool,
-      errorMessage: null == errorMessage
+      errorMessage: freezed == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
-              as String,
-      successMessage: null == successMessage
+              as String?,
+      successMessage: freezed == successMessage
           ? _value.successMessage
           : successMessage // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 }
@@ -773,12 +1127,14 @@ abstract class _$$_TaskStateCopyWith<$Res> implements $TaskStateCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {List<Task> taskList,
+      {List<Task> allTaskList,
       List<Task> activeTaskList,
       List<Task> completedTaskList,
+      String displayMode,
+      String sortBy,
       bool isBusy,
-      String errorMessage,
-      String successMessage});
+      String? errorMessage,
+      String? successMessage});
 }
 
 /// @nodoc
@@ -792,17 +1148,19 @@ class __$$_TaskStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? taskList = null,
+    Object? allTaskList = null,
     Object? activeTaskList = null,
     Object? completedTaskList = null,
+    Object? displayMode = null,
+    Object? sortBy = null,
     Object? isBusy = null,
-    Object? errorMessage = null,
-    Object? successMessage = null,
+    Object? errorMessage = freezed,
+    Object? successMessage = freezed,
   }) {
     return _then(_$_TaskState(
-      taskList: null == taskList
-          ? _value._taskList
-          : taskList // ignore: cast_nullable_to_non_nullable
+      allTaskList: null == allTaskList
+          ? _value._allTaskList
+          : allTaskList // ignore: cast_nullable_to_non_nullable
               as List<Task>,
       activeTaskList: null == activeTaskList
           ? _value._activeTaskList
@@ -812,18 +1170,26 @@ class __$$_TaskStateCopyWithImpl<$Res>
           ? _value._completedTaskList
           : completedTaskList // ignore: cast_nullable_to_non_nullable
               as List<Task>,
+      displayMode: null == displayMode
+          ? _value.displayMode
+          : displayMode // ignore: cast_nullable_to_non_nullable
+              as String,
+      sortBy: null == sortBy
+          ? _value.sortBy
+          : sortBy // ignore: cast_nullable_to_non_nullable
+              as String,
       isBusy: null == isBusy
           ? _value.isBusy
           : isBusy // ignore: cast_nullable_to_non_nullable
               as bool,
-      errorMessage: null == errorMessage
+      errorMessage: freezed == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
-              as String,
-      successMessage: null == successMessage
+              as String?,
+      successMessage: freezed == successMessage
           ? _value.successMessage
           : successMessage // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -832,21 +1198,23 @@ class __$$_TaskStateCopyWithImpl<$Res>
 
 class _$_TaskState implements _TaskState {
   const _$_TaskState(
-      {required final List<Task> taskList,
+      {required final List<Task> allTaskList,
       required final List<Task> activeTaskList,
       required final List<Task> completedTaskList,
+      required this.displayMode,
+      required this.sortBy,
       required this.isBusy,
       required this.errorMessage,
       required this.successMessage})
-      : _taskList = taskList,
+      : _allTaskList = allTaskList,
         _activeTaskList = activeTaskList,
         _completedTaskList = completedTaskList;
 
-  final List<Task> _taskList;
+  final List<Task> _allTaskList;
   @override
-  List<Task> get taskList {
+  List<Task> get allTaskList {
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_taskList);
+    return EqualUnmodifiableListView(_allTaskList);
   }
 
   final List<Task> _activeTaskList;
@@ -864,15 +1232,19 @@ class _$_TaskState implements _TaskState {
   }
 
   @override
+  final String displayMode;
+  @override
+  final String sortBy;
+  @override
   final bool isBusy;
   @override
-  final String errorMessage;
+  final String? errorMessage;
   @override
-  final String successMessage;
+  final String? successMessage;
 
   @override
   String toString() {
-    return 'TaskState(taskList: $taskList, activeTaskList: $activeTaskList, completedTaskList: $completedTaskList, isBusy: $isBusy, errorMessage: $errorMessage, successMessage: $successMessage)';
+    return 'TaskState(allTaskList: $allTaskList, activeTaskList: $activeTaskList, completedTaskList: $completedTaskList, displayMode: $displayMode, sortBy: $sortBy, isBusy: $isBusy, errorMessage: $errorMessage, successMessage: $successMessage)';
   }
 
   @override
@@ -880,11 +1252,15 @@ class _$_TaskState implements _TaskState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_TaskState &&
-            const DeepCollectionEquality().equals(other._taskList, _taskList) &&
+            const DeepCollectionEquality()
+                .equals(other._allTaskList, _allTaskList) &&
             const DeepCollectionEquality()
                 .equals(other._activeTaskList, _activeTaskList) &&
             const DeepCollectionEquality()
                 .equals(other._completedTaskList, _completedTaskList) &&
+            (identical(other.displayMode, displayMode) ||
+                other.displayMode == displayMode) &&
+            (identical(other.sortBy, sortBy) || other.sortBy == sortBy) &&
             (identical(other.isBusy, isBusy) || other.isBusy == isBusy) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage) &&
@@ -895,9 +1271,11 @@ class _$_TaskState implements _TaskState {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(_taskList),
+      const DeepCollectionEquality().hash(_allTaskList),
       const DeepCollectionEquality().hash(_activeTaskList),
       const DeepCollectionEquality().hash(_completedTaskList),
+      displayMode,
+      sortBy,
       isBusy,
       errorMessage,
       successMessage);
@@ -911,25 +1289,31 @@ class _$_TaskState implements _TaskState {
 
 abstract class _TaskState implements TaskState {
   const factory _TaskState(
-      {required final List<Task> taskList,
+      {required final List<Task> allTaskList,
       required final List<Task> activeTaskList,
       required final List<Task> completedTaskList,
+      required final String displayMode,
+      required final String sortBy,
       required final bool isBusy,
-      required final String errorMessage,
-      required final String successMessage}) = _$_TaskState;
+      required final String? errorMessage,
+      required final String? successMessage}) = _$_TaskState;
 
   @override
-  List<Task> get taskList;
+  List<Task> get allTaskList;
   @override
   List<Task> get activeTaskList;
   @override
   List<Task> get completedTaskList;
   @override
+  String get displayMode;
+  @override
+  String get sortBy;
+  @override
   bool get isBusy;
   @override
-  String get errorMessage;
+  String? get errorMessage;
   @override
-  String get successMessage;
+  String? get successMessage;
   @override
   @JsonKey(ignore: true)
   _$$_TaskStateCopyWith<_$_TaskState> get copyWith =>

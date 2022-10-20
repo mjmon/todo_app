@@ -2,8 +2,11 @@ part of 'task_bloc.dart';
 
 @freezed
 class TaskEvent with _$TaskEvent {
-  const factory TaskEvent.fetch({required List<Task> taskList}) = _Fetch;
-  const factory TaskEvent.add({required Task task}) = _Add;
-  const factory TaskEvent.edit({required Task task}) = _Edit;
-  const factory TaskEvent.delete({required Task task}) = _Delete;
+  const factory TaskEvent.fetch() = Fetch;
+  const factory TaskEvent.add({required Task task}) = Add;
+  const factory TaskEvent.update({required Task task}) = Update;
+  const factory TaskEvent.delete({required Task task}) = Delete;
+  const factory TaskEvent.changeDisplayMode({required String mode}) =
+      ChangeDisplayMode;
+  const factory TaskEvent.changeSortby({required String sortby}) = ChangeSortby;
 }

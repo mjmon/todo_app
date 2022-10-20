@@ -2,19 +2,24 @@ part of 'task_bloc.dart';
 
 @freezed
 class TaskState with _$TaskState {
-  const factory TaskState(
-      {required List<Task> taskList,
-      required List<Task> activeTaskList,
-      required List<Task> completedTaskList,
-      required bool isBusy,
-      required String errorMessage,
-      required String successMessage}) = _TaskState;
+  const factory TaskState({
+    required List<Task> allTaskList,
+    required List<Task> activeTaskList,
+    required List<Task> completedTaskList,
+    required String displayMode,
+    required String sortBy,
+    required bool isBusy,
+    required String? errorMessage,
+    required String? successMessage,
+  }) = _TaskState;
 
   factory TaskState.initial() => const TaskState(
-      taskList: [],
+      allTaskList: [],
       activeTaskList: [],
       completedTaskList: [],
+      displayMode: 'Active',
+      sortBy: 'Name',
       isBusy: false,
-      errorMessage: '',
-      successMessage: '');
+      errorMessage: null,
+      successMessage: null);
 }

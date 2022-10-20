@@ -8,14 +8,12 @@ class TaskItem extends StatelessWidget {
     Key? key,
     required this.task,
     required this.onCompleteToggle,
-    required this.onChangePriority,
     required this.onView,
     required this.onDelete,
   }) : super(key: key);
 
   final Task task;
   final void Function(bool? newValue)? onCompleteToggle;
-  final void Function(int newValue) onChangePriority;
   final void Function() onView;
   final void Function() onDelete;
 
@@ -42,7 +40,7 @@ class TaskItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "${task.id} ${task.title}",
+                    task.title,
                     overflow: TextOverflow.ellipsis,
                     style: task.isComplete
                         ? const TextStyle(
