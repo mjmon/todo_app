@@ -13,6 +13,8 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
   TaskBloc({required TaskRepository taskRepository})
       : _taskRepository = taskRepository,
         super(TaskState.initial()) {
+    /// listen to any changes on the database and emit `TaskEvent.fetch` 
+    /// for every changes to automatically update the state
     _taskRepository.stream().listen(((_) {
       add(const TaskEvent.fetch());
     }));

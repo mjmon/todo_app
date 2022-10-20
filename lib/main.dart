@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
       create: (context) =>
           TaskBloc(taskRepository: context.read<TaskRepository>()),
       child: MaterialApp(
-        title: 'Flutter Demo',
+        title: 'Rocket Todo',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(primarySwatch: Colors.green),
         home: const HomePage(),

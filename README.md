@@ -1,16 +1,26 @@
-# rocket_todo
+### Rocket Todo
+<p align="left">
+<img src="assets/images/icon_android.png" height="150" alt="Rocket" />
+</p>
+<p align="left">
+<img src="assets/images/screenshot.png" height="500"
+alt="Screenshot" />
+</p>
 
-A new Flutter project.
 
-## Getting Started
+See [demo video](https://drive.google.com/file/d/1AdEcuuzlwFHJ3Q_2ZD0L_LHo-6OB8hak/view) for guide
 
-This project is a starting point for a Flutter application.
+---
+A simple app that:
+-  Add and view tasks
+-  Delete a task
+-  Complete a task
+-  Set a priority for my tasks
+-  View the tasks sorted by priority and name
+-  View the number of total and completed tasks
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Requirements
+- [Flutter  3.x.x](https://flutter.dev/)
+- [Android Studio](https://developer.android.com/studio)
+- [Xcode](https://developer.apple.com/xcode//)

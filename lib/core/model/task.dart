@@ -23,6 +23,6 @@ class Task with _$Task {
       description: 'sample description',
       priority: 2,
       isComplete: false);
-
+  /// generates a [Task] instance from a [json]
   factory Task.fromJson(Map<String, dynamic> json) => _$TaskFromJson(json);
 }

@@ -20,7 +20,7 @@ class TaskRepository implements IBaseRepository<Task> {
       : _database = database,
         _taskStore = taskStore;
 
-  /// listen to changes on the database
+  /// listen to changes on the database, the stream of `List<Task>` is only used for better mocking the state
   @override
   Stream<List<Task>> stream() {
     return _taskStore
@@ -29,6 +29,7 @@ class TaskRepository implements IBaseRepository<Task> {
         .transform(_streamTransformer);
   }
 
+  /// returns all `Task` objects from the database
   @override
   Future<List<Task>> fetch() async {
     final recordSnapshots = await _taskStore.find(
@@ -46,17 +47,20 @@ class TaskRepository implements IBaseRepository<Task> {
     return taskList;
   }
 
+  /// inserts a new `Task` object to the database
   @override
   Future<void> add(Task item) async {
     await _taskStore.add(_database, item.toJson());
   }
 
+  /// inserts a specific `Task` object into the database
   @override
   Future<void> update(Task item) async {
     final finder = Finder(filter: Filter.byKey(item.id));
     await _taskStore.update(_database, item.toJson(), finder: finder);
   }
 
+  /// removes a specific `Task` object from the database
   @override
   Future<void> delete(Task item) async {
     final finder = Finder(filter: Filter.byKey(item.id));
@@ -64,6 +68,7 @@ class TaskRepository implements IBaseRepository<Task> {
   }
 }
 
+/// used for transforming stream of raw snapshots into `List<Task>` for better handling and mocking
 final _streamTransformer = StreamTransformer<
     List<RecordSnapshot<dynamic, dynamic>>, List<Task>>.fromHandlers(
   handleData: (List<RecordSnapshot<dynamic, dynamic>> data, EventSink sink) {
