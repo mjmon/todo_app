@@ -173,14 +173,9 @@ class _CreateEditPageState extends State<CreateEditPage> {
         listenWhen: (previous, current) => previous.isBusy != current.isBusy,
         listener: (context, state) async {
           if (state.isBusy == false) {
-            if (state.errorMessage != null) {
-              showSnack(context, state.errorMessage ?? '');
-            } else if (state.successMessage != null) {
-              showSnack(context, state.successMessage ?? '');
-            }
-            await Future.delayed(const Duration(milliseconds: 200), () {
-              Navigator.pop(context);
-            });
+            // await Future.delayed(const Duration(milliseconds: 200), () {
+            Navigator.pop(context);
+            // });
           }
         },
         child: TapDebouncer(

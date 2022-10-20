@@ -15,18 +15,104 @@ final task3 =
 class MockTaskRepository extends Mock implements TaskRepository {}
 
 void main() {
-  late TaskRepository taskRepository;
-
-  setUp(() {
-    taskRepository = MockTaskRepository();
-    when(() => taskRepository.stream())
-        .thenAnswer((_) => Stream.fromIterable([any, any]));
-  });
-
   group("TaskBloc", () {
+    late TaskRepository taskRepository;
+    late TaskBloc taskBloc;
+
+    setUp(() {
+      taskRepository = MockTaskRepository();
+      when(() => taskRepository.stream())
+          .thenAnswer((_) => Stream.fromIterable([
+                [task1, task2, task3]
+              ]));
+      // when(() => taskRepository.fetch())
+      //     .thenAnswer((_) async => [task1, task2, task3]);
+      // when(() => taskRepository.add(task1));
+      // when(() => taskRepository.update(task1));
+      // when(() => taskRepository.delete(task1));
+      taskBloc = TaskBloc(taskRepository: taskRepository);
+    });
+
     test("initial state is TaskState.initial", () {
       final taskBloc = TaskBloc(taskRepository: taskRepository);
       expect(taskBloc.state, TaskState.initial());
+    });
+
+    group("Fetch", () {
+      blocTest<TaskBloc, TaskState>("success emits state below",
+          setUp: () {
+            when(() => taskRepository.stream())
+                .thenAnswer((_) => Stream.fromIterable([
+                      [task1, task2, task3]
+                    ]));
+            when(() => taskRepository.fetch())
+                .thenAnswer((_) async => [task1, task2, task3]);
+          },
+          build: () => TaskBloc(taskRepository: taskRepository),
+          expect: () => [
+                TaskState.initial().copyWith(
+                    allTaskList: [task1, task2, task3],
+                    activeTaskList: [task1, task2, task3],
+                    isBusy: false)
+              ]);
+
+      blocTest<TaskBloc, TaskState>("failure emits state below",
+          setUp: () {
+            when(() => taskRepository.stream())
+                .thenAnswer((_) => Stream.fromIterable([
+                      [task1, task2, task3]
+                    ]));
+            when(() => taskRepository.fetch()).thenThrow('some error');
+          },
+          build: () => TaskBloc(taskRepository: taskRepository),
+          expect: () => [
+                TaskState.initial().copyWith(
+                    isBusy: false,
+                    errorMessage: "Failed in fetching tasks: some error")
+              ]);
+    });
+
+    group("Add", () {
+      blocTest<TaskBloc, TaskState>("success emits state below",
+          setUp: () {
+            when(() => taskRepository.stream())
+                .thenAnswer((_) => Stream.fromIterable([
+                      [task1, task2, task3]
+                    ]));
+            when(() => taskRepository.fetch())
+                .thenAnswer((_) async => [task1, task2, task3]);
+            when(() => taskRepository.add(Task.dummy()))
+                .thenAnswer((_) async => {});
+          },
+          act: (bloc) => bloc.add(TaskEvent.add(task: Task.dummy())),
+          build: () => TaskBloc(taskRepository: taskRepository),
+          expect: () => [
+                TaskState.initial().copyWith(isBusy: true),
+                TaskState.initial().copyWith(
+                    allTaskList: [task1, task2, task3],
+                    activeTaskList: [task1, task2, task3],
+                    isBusy: false),
+                TaskState.initial().copyWith(
+                    isBusy: false,
+                    successMessage: "Successfully added!",
+                    errorMessage: null)
+              ]);
+
+      // blocTest<TaskBloc, TaskState>("failure emits state below",
+      //     setUp: () {
+      //       when(() => taskRepository.stream())
+      //           .thenAnswer((_) => Stream.fromIterable([
+      //                 [task1, task2, task3]
+      //               ]));
+      //       when(() => taskRepository.fetch()).thenThrow('some error');
+      //     },
+      //     build: () => TaskBloc(taskRepository: taskRepository),
+      //     expect: () => [
+      //           TaskState.initial().copyWith(isBusy: true),
+      //           TaskState.initial().copyWith(
+      //               isBusy: false,
+      //               errorMessage: "Failed in fetching tasks: some error")
+      //         ]);
     });
   });
 }

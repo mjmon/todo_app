@@ -41,8 +41,16 @@ class HomePage extends StatelessWidget {
         ],
       ),
       body: BlocConsumer<TaskBloc, TaskState>(
-        listenWhen: (previous, current) => previous.isBusy != current.isBusy,
-        listener: (context, state) {},
+        listenWhen: (previous, current) =>
+            previous.errorMessage != current.errorMessage ||
+            previous.successMessage != current.successMessage,
+        listener: (context, state) {
+          if (state.errorMessage != null) {
+            showSnack(context, state.errorMessage ?? '');
+          } else if (state.successMessage != null) {
+            showSnack(context, state.successMessage ?? '');
+          }
+        },
         buildWhen: (previous, current) => true,
         builder: (context, state) {
           if (state.isBusy) {
