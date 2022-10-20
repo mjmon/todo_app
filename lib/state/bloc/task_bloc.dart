@@ -30,7 +30,6 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
   }
 
   Future<void> _fetchTaskHandler(Fetch e, Emitter<TaskState> emit) async {
-    // emit(state.copyWith(isBusy: true));
     try {
       List<Task> kAllTaskList = await _taskRepository.fetch();
       //sorting
@@ -101,7 +100,7 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
       await _taskRepository.delete(e.task);
       emit(state.copyWith(
           isBusy: false,
-          successMessage: "Successfully deleted",
+          successMessage: "Successfully deleted!",
           errorMessage: null));
     } catch (e) {
       emit(state.copyWith(
