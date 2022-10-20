@@ -24,6 +24,7 @@ dependencies:
 dev_dependencies:
   bloc_test: ^9.1.0
   build_runner: ^2.3.0
+  flutter_launcher_icons: ^0.10.0
   flutter_lints: ^2.0.0
   flutter_test:
     sdk: flutter
@@ -33,3 +34,11 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/images/
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path_android: "assets/images/icon_android.png"
+  image_path_ios: "assets/images/icon_ios.png"

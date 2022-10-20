@@ -1,8 +1,12 @@
-# rocket_todo
+### Rocket Todo
+<p align="left">
+<img src="https://i.pinimg.com/originals/e1/74/b3/e174b3c986582a60ce3977fee1119834.png" width="200" height="200" alt="Rocket" />
+</p>
+
+</p>
 
 A new Flutter project.
-
-## Getting Started
+### Getting Started
 
 This project is a starting point for a Flutter application.
 
