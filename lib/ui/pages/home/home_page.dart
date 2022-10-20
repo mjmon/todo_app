@@ -20,13 +20,15 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final sortBy = context.watch<TaskBloc>().state.sortBy;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("My Tasks"),
         actions: [
           IconButton(
               onPressed: () async {
-                await showSortSelectPopup(context, currentSort: "Name")
+                await showSortSelectPopup(context, currentSort: sortBy)
                     .then((result) {
                   if (result != null) {
                     context

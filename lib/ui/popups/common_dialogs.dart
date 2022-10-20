@@ -5,7 +5,6 @@ import 'package:rocket_todo/ui/utils/utils.dart';
 Future<bool> showDeleteConfirmation(BuildContext context) async {
   final result = await showOkCancelAlertDialog(
       context: context,
-      style: AdaptiveStyle.iOS,
       title: 'Confirmation',
       message: 'Are you sure you want to delete this task?',
       isDestructiveAction: true);
@@ -24,7 +23,6 @@ Future<int?> showPrioritySelectPopup(BuildContext context,
 
   final result = await showConfirmationDialog(
       context: context,
-      style: AdaptiveStyle.iOS,
       title: 'Select Priority Level',
       initialSelectedActionKey: currentSelected,
       actions: [
@@ -45,7 +43,6 @@ Future<String?> showSortSelectPopup(BuildContext context,
     {required String currentSort}) async {
   final result = await showConfirmationDialog(
       context: context,
-      style: AdaptiveStyle.iOS,
       title: 'Sort By',
       initialSelectedActionKey: currentSort,
       actions: [
