@@ -51,6 +51,7 @@ class TaskItem extends StatelessWidget {
                   ),
                   Text(
                     task.description,
+                    maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: task.isComplete
                         ? Theme.of(context).textTheme.caption!.copyWith(
