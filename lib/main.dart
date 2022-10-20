@@ -8,13 +8,14 @@ import 'package:rocket_todo/ui/pages/home/home_page.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // initialize database config
-  final DatabaseConfig databaseConfig = await initDatabase();
+  final DatabaseConfig databaseConfig = DatabaseConfig();
+  await databaseConfig.initConfig();
   //Provide instance of the databaseConfig db and store to the TaskRepository
   runApp(
     RepositoryProvider(
       create: (context) => TaskRepository(
-          database: databaseConfig.database,
-          taskStore: databaseConfig.taskStore),
+          database: databaseConfig.database!,
+          taskStore: databaseConfig.taskStore!),
       child: const MyApp(),
     ),
   );

@@ -5,7 +5,7 @@ import 'package:rocket_todo/core/model/task.dart';
 import 'package:sembast/sembast.dart';
 
 abstract class IBaseRepository<T> {
-  Stream<dynamic> stream();
+  Stream<List<Task>> stream();
   Future<List<T>> fetch();
   Future<void> add(T item);
   Future<void> update(T item);
@@ -22,8 +22,11 @@ class TaskRepository implements IBaseRepository<Task> {
 
   /// listen to changes on the database
   @override
-  Stream<dynamic> stream() {
-    return _taskStore.query().onSnapshots(_database);
+  Stream<List<Task>> stream() {
+    return _taskStore
+        .query()
+        .onSnapshots(_database)
+        .transform(_streamTransformer);
   }
 
   @override
@@ -60,3 +63,25 @@ class TaskRepository implements IBaseRepository<Task> {
     await _taskStore.delete(_database, finder: finder);
   }
 }
+
+final _streamTransformer = StreamTransformer<
+    List<RecordSnapshot<dynamic, dynamic>>, List<Task>>.fromHandlers(
+  handleData: (List<RecordSnapshot<dynamic, dynamic>> data, EventSink sink) {
+    final List<Task> taskList = [];
+
+    for (final e in data) {
+      final task = Task.fromJson(e.value).copyWith(id: e.key);
+
+      taskList.add(task);
+    }
+    sink.add(taskList);
+  },
+  handleError: (error, stacktrace, sink) {
+    debugPrint('transformer: $error');
+    sink.addError('Something went wrong: $error');
+  },
+  handleDone: (sink) {
+    debugPrint('transformer: done');
+    sink.close();
+  },
+);

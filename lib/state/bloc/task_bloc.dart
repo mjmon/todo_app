@@ -31,7 +31,6 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
 
   Future<void> _fetchTaskHandler(Fetch e, Emitter<TaskState> emit) async {
     try {
-      emit(state.copyWith(isBusy: true));
       List<Task> kAllTaskList = await _taskRepository.fetch();
       //sorting
       if (state.sortBy == "Name") {
@@ -48,20 +47,22 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
       ];
 
       emit(state.copyWith(
-          allTaskList: kAllTaskList,
-          activeTaskList: kActiveTaskList,
-          completedTaskList: kCompletedTaskList,
-          isBusy: false,
-          errorMessage: null));
+        allTaskList: kAllTaskList,
+        activeTaskList: kActiveTaskList,
+        completedTaskList: kCompletedTaskList,
+        isBusy: false,
+      ));
     } catch (e) {
       emit(state.copyWith(
-          isBusy: false, errorMessage: "Failed in fetching tasks: $e"));
+        isBusy: false,
+      ));
     }
   }
 
   Future<void> _addTaskHandler(Add e, Emitter<TaskState> emit) async {
     try {
-      emit(state.copyWith(isBusy: true));
+      emit(state.copyWith(
+          isBusy: true, successMessage: null, errorMessage: null));
       await _taskRepository.add(e.task);
       emit(state.copyWith(
           isBusy: false,
@@ -77,7 +78,8 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
 
   Future<void> _updateTaskHandler(Update e, Emitter<TaskState> emit) async {
     try {
-      emit(state.copyWith(isBusy: true));
+      emit(state.copyWith(
+          isBusy: true, successMessage: null, errorMessage: null));
       await _taskRepository.update(e.task);
       emit(state.copyWith(
           isBusy: false,
@@ -93,11 +95,12 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
 
   Future<void> _deleteTaskhandler(Delete e, Emitter<TaskState> emit) async {
     try {
-      emit(state.copyWith(isBusy: true));
+      emit(state.copyWith(
+          isBusy: true, successMessage: null, errorMessage: null));
       await _taskRepository.delete(e.task);
       emit(state.copyWith(
           isBusy: false,
-          successMessage: "Successfully deleted",
+          successMessage: "Successfully deleted!",
           errorMessage: null));
     } catch (e) {
       emit(state.copyWith(
