@@ -3,7 +3,7 @@
 <img src="assets/images/icon_android.png" height="150" alt="Rocket" />
 </p>
 <p align="left">
-<img src="assets/images/screenshot.png" height="500"
+<img src="assets/images/screenshot.jpg"
 alt="Screenshot" />
 </p>
 
