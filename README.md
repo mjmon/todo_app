@@ -3,18 +3,20 @@
 <img src="https://i.pinimg.com/originals/e1/74/b3/e174b3c986582a60ce3977fee1119834.png" width="200" height="200" alt="Rocket" />
 </p>
 
-</p>
+---
+A simple app that:
+-  Add and view tasks
+-  Delete a task
+-  Complete a task
+-  Set a priority for my tasks
+-  View the tasks sorted by priority and name
+-  View the number of total and completed tasks
 
-A new Flutter project.
 ### Getting Started
 
-This project is a starting point for a Flutter application.
+See [the demo](https://www.loom.com/share/6badb0cefc374708b67f4194648df1d5) for usage reference
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Requirements
+- [Flutter  3.3.5](https://flutter.dev/)
+- [Android Studio](https://developer.android.com/studio)
+- [Xcode](https://developer.apple.com/xcode//)
