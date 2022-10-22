@@ -15,8 +15,18 @@ import 'package:rocket_todo/ui/popups/common_snack.dart';
 import 'package:rocket_todo/ui/pages/home/widgets/task_item.dart';
 
 /// here all the tasks are displayed
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -10,7 +10,8 @@ class DisplayModeToggle extends StatelessWidget {
     return BlocBuilder<TaskBloc, TaskState>(
       buildWhen: (previous, current) =>
           previous.displayMode != current.displayMode ||
-          previous.isBusy != current.isBusy,
+          previous.isBusy != current.isBusy ||
+          previous.allTaskList != current.activeTaskList,
       builder: (context, state) {
         return Row(
           mainAxisSize: MainAxisSize.min,

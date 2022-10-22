@@ -45,6 +45,7 @@ class TaskItem extends StatelessWidget {
                     style: task.isComplete
                         ? const TextStyle(
                             color: Colors.grey,
+                            fontWeight: FontWeight.bold,
                             decoration: TextDecoration.lineThrough,
                           )
                         : null,
